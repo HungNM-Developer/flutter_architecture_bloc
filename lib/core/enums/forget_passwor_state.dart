@@ -1,0 +1,1 @@
+enum RestoreForgetPasswordState { success, error }
