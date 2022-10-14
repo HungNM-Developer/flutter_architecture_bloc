@@ -29,4 +29,14 @@ class AppColors {
   static const Color yellow = Color(0xFFF6C747);
   static const Color semiGrey = Color(0xFFbababa);
   static const Color violet = Color(0xD07038F8);
+  static const Color violetMain = Color.fromARGB(208, 82, 9, 228);
+  static const Color neonTeal = Color(0xFF00CAB1);
+
+  static const Color kPinkColor = Color(0xFFFE53BB);
+  static const Color kCyanColor = Color(0xFF08F7FE);
+  static const Color kGreenColor = Color(0xFF09FBD3);
+  static const Color kBlackColor = Color(0xFF19191B);
+  static const Color kYellowColor = Color(0xFFF2A33A);
+  static const Color kWhiteColor = Color(0xFFFFFFFF);
+  static const Color kGreyColor = Color(0xFF767680);
 }

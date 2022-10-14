@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../config/config.dart';
+
 class AppCircularProgressIndicator extends StatefulWidget {
   const AppCircularProgressIndicator({Key? key}) : super(key: key);
 
@@ -73,8 +75,8 @@ class _GradientCircularProgressPainter extends CustomPainter {
 
     paint.shader = SweepGradient(
       colors: const [
-        Color.fromARGB(255, 228, 255, 210),
-        Color.fromARGB(255, 145, 202, 108),
+        AppColors.kPinkColor,
+        AppColors.kGreenColor,
       ],
       tileMode: TileMode.repeated,
       startAngle: _degreeToRad(100),

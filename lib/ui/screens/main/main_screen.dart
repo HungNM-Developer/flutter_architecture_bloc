@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_bloc/config/app_colors.dart';
 import 'package:flutter_architecture_bloc/di/injection.dart';
 import 'package:flutter_architecture_bloc/ui/screens/main/articles/articles_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,9 +56,14 @@ class _MainScreenState extends State<MainScreen> {
             },
           ),
           bottomNavigationBar: ConvexAppBar(
+            activeColor: AppColors.whiteGrey,
+            color: AppColors.violet,
+            backgroundColor: AppColors.black,
             style: TabStyle.reactCircle,
             items: const [
-              TabItem(icon: Icons.search),
+              TabItem(
+                icon: Icons.search,
+              ),
               TabItem(icon: Icons.home),
               TabItem(icon: Icons.bookmark),
             ],

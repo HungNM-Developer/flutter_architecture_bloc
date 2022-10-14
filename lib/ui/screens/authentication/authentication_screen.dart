@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_bloc/config/app_images.dart';
 import 'package:flutter_architecture_bloc/core/enums/button_type.dart';
 import 'package:flutter_architecture_bloc/core/routes/route_name.dart';
 import 'package:flutter_architecture_bloc/di/injection.dart';
@@ -6,10 +9,13 @@ import 'package:flutter_architecture_bloc/states/cubit/authentication/authentica
 import 'package:flutter_architecture_bloc/states/cubit/authentication/authentication_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../config/app_colors.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_text_form_field.dart';
+import '../../widgets/button_gradient.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({Key? key}) : super(key: key);
@@ -41,121 +47,172 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         }
       },
       child: Scaffold(
-        body: SafeArea(
-          child: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            padding: REdgeInsets.symmetric(horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                49.verticalSpace,
-                Text(
-                  'Chào mừng bạn',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 26.sp,
-                    color: Colors.black87,
+        backgroundColor: AppColors.kBlackColor,
+        extendBody: true,
+        body: Stack(
+          children: [
+            Positioned(
+              top: 100.h,
+              left: -88,
+              child: Container(
+                height: 166,
+                width: 166,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.kPinkColor,
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 200,
+                    sigmaY: 200,
+                  ),
+                  child: Container(
+                    height: 166,
+                    width: 166,
+                    color: Colors.transparent,
                   ),
                 ),
-                Text(
-                  'Đăng nhập vào tài khoản',
-                  style: TextStyle(fontSize: 20.sp, color: Colors.black54),
+              ),
+            ),
+            Positioned(
+              top: 300.h,
+              right: -100,
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.kGreenColor,
                 ),
-                28.verticalSpace,
-                AppTextFormField(
-                  controller: _emailController,
-                  hint: 'Thư điện tử',
-                  label: 'Thư điện tử',
-                  isRequired: true,
-                ),
-                24.verticalSpace,
-                AppTextFormField(
-                  controller: _passwordController,
-                  hint: 'Mật khẩu',
-                  label: 'Mật khẩu',
-                  obscureText: true,
-                  isRequired: true,
-                ),
-                10.verticalSpace,
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      context.goNamed(RouteName.forgotPassword);
-                    },
-                    child: Text(
-                      'Quên mật khẩu',
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(
+                    sigmaX: 200,
+                    sigmaY: 200,
+                  ),
+                  child: Container(
+                    height: 200,
+                    width: 200,
+                    color: Colors.transparent,
                   ),
                 ),
-                30.verticalSpace,
-                AppButton(
-                  mainAxisSize: MainAxisSize.max,
-                  title: 'Đăng nhập',
-                  borderRadius: 10.r,
-                  onPressed: () {
-                    _authenticationBloc.login(
-                      username: _emailController.text,
-                      password: _passwordController.text,
-                    );
-                  },
-                ),
-                30.verticalSpace,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Divider(
-                        color: Colors.tealAccent.withOpacity(0.2),
-                        height: 1.h,
-                      ),
-                    ),
-                    const Spacer(),
-                    Expanded(
-                      child: Text(
-                        'Hoặc',
+              ),
+            ),
+            SafeArea(
+              child: SizedBox(
+                height: double.infinity,
+                child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
+                  padding: REdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      49.verticalSpace,
+                      Text(
+                        'Wellcome,',
                         style: TextStyle(
-                          fontSize: 14.sp,
-                          color: Colors.tealAccent,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 35.sp,
+                          color: AppColors.kWhiteColor,
                         ),
                       ),
-                    ),
-                    const Spacer(),
-                    Expanded(
-                      flex: 2,
-                      child: Divider(
-                        height: 1.h,
-                        color: Colors.tealAccent.withOpacity(0.2),
+                      Text(
+                        'Sign in with your account',
+                        style: TextStyle(
+                          fontSize: 20.sp,
+                          color: AppColors.kGreyColor,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                33.verticalSpace,
-                AppButton(
-                  title: 'Đăng nhập với Google',
-                  mainAxisSize: MainAxisSize.max,
-                  borderRadius: 10.r,
-                  prefix: const Icon(Icons.access_alarm),
-                  // SvgPicture.asset(
-                  //   AppImages.google,
-                  //   width: 24.r,
-                  //   height: 24.r,
-                  // ),
-                  type: ButtonType.outline,
-                  textStyle: TextStyle(
-                    fontSize: 14.sp,
-                    color: Colors.black,
+                      70.verticalSpace,
+                      AppTextFormField(
+                        controller: _emailController,
+                        hint: 'User name or email',
+                        label: 'User name or email',
+                        isRequired: true,
+                      ),
+                      30.verticalSpace,
+                      AppTextFormField(
+                        controller: _passwordController,
+                        hint: 'Password',
+                        label: 'Password',
+                        obscureText: true,
+                        isRequired: true,
+                      ),
+                      10.verticalSpace,
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            context.goNamed(RouteName.forgotPassword);
+                          },
+                          child: Text(
+                            'forget password',
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              color: Colors.blueGrey,
+                            ),
+                          ),
+                        ),
+                      ),
+                      30.verticalSpace,
+                      ButtonGradient(
+                        onTap: () {
+                          context.goNamed(RouteName.movieHomeScreen);
+                        },
+                        title: 'Sign In',
+                        height: 44.h,
+                        width: double.infinity,
+                        type: ButtonType.primary,
+                      ),
+                      30.verticalSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Divider(
+                              color: Colors.tealAccent.withOpacity(0.2),
+                              height: 1.h,
+                            ),
+                          ),
+                          const Spacer(),
+                          Expanded(
+                            child: Text(
+                              'Hoặc',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: Colors.tealAccent,
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          Expanded(
+                            flex: 2,
+                            child: Divider(
+                              height: 1.h,
+                              color: Colors.tealAccent.withOpacity(0.2),
+                            ),
+                          ),
+                        ],
+                      ),
+                      33.verticalSpace,
+                      ButtonGradient(
+                        onTap: () {},
+                        title: 'Sign In with Google',
+                        height: 44.h,
+                        width: double.infinity,
+                        type: ButtonType.outline,
+                        prefix: Image(
+                          image: AppImages.google,
+                          width: 20.w,
+                          height: 20.w,
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

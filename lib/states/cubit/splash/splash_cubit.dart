@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_architecture_bloc/core/domain/local/shared_prefs.dart';
-import 'package:flutter_architecture_bloc/core/domain/local/shared_prefs_keys.dart';
 
+import '../../../core/data/domain/local/shared_prefs.dart';
+import '../../../core/data/domain/local/shared_prefs_keys.dart';
 import 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {

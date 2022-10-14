@@ -3,23 +3,23 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'api_response.freezed.dart';
 part 'api_response.g.dart';
 
-@Freezed(genericArgumentFactories: true)
-class ApiResponse<T> with _$ApiResponse<T> {
+@freezed
+class ApiResponse with _$ApiResponse {
   const factory ApiResponse({
     @Default('') String version,
-    @Default(true) bool status,
+    @Default('true') String status,
     @Default('') String message,
     @Default(0) int totalRow,
     @Default(0) int rowsPerPage,
-    T? data,
+    @Default('') String data,
   }) = _ApiResponseData;
   const ApiResponse._();
 
   void fold({
-    Function(ApiResponse<T>)? success,
+    Function(ApiResponse)? success,
     Function(String)? error,
   }) {
-    if (status) {
+    if (status == 'true' || status == 'ok') {
       success?.call(this);
     } else {
       error?.call(message);
@@ -27,6 +27,7 @@ class ApiResponse<T> with _$ApiResponse<T> {
   }
 
   factory ApiResponse.fromJson(
-          Map<String, dynamic> json, T Function(dynamic) fromJsonT) =>
-      _$ApiResponseFromJson(json, fromJsonT);
+    Map<String, dynamic> json,
+  ) =>
+      _$ApiResponseFromJson(json);
 }

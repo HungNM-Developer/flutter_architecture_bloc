@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/core/core.dart';
 import 'package:flutter_architecture_bloc/ui/screens/authentication/authentication_screen.dart';
+import 'package:flutter_architecture_bloc/ui/screens/movie_home/movie_home_screen.dart';
 import 'package:flutter_architecture_bloc/ui/screens/splash/splash_screem.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,6 +15,7 @@ import 'ui/screens/main/articles/articles_screen.dart';
 import 'ui/screens/main/bookmark/bookmark_screen.dart';
 import 'ui/screens/main/main_screen.dart';
 import 'ui/screens/main/search/search_screen.dart';
+import 'ui/screens/onboarding/onboarding_screen.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
@@ -27,11 +29,17 @@ class AppRouter {
         },
       ),
       GoRoute(
+        path: RoutePath.onboardingScreen,
+        name: RouteName.onboardingScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const OnboardingScreen();
+        },
+      ),
+      GoRoute(
         path: RoutePath.authenticationScreen,
         name: RouteName.authenticationScreen,
         builder: (BuildContext context, GoRouterState state) {
-          // ignore: prefer_const_constructors
-          return AuthenticationScreen();
+          return const AuthenticationScreen();
         },
         routes: [
           GoRoute(
@@ -59,11 +67,17 @@ class AppRouter {
         ],
       ),
       GoRoute(
+        path: RoutePath.movieHomeScreen,
+        name: RouteName.movieHomeScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const MovieHomeScreen();
+        },
+      ),
+      GoRoute(
         path: RoutePath.mainScreen,
         name: RouteName.mainScreen,
         builder: (BuildContext context, GoRouterState state) {
-          // ignore: prefer_const_constructors
-          return MainScreen();
+          return const MainScreen();
         },
         routes: [
           GoRoute(
@@ -74,8 +88,8 @@ class AppRouter {
             },
           ),
           GoRoute(
-              path: RoutePath.homeScreen,
-              name: RouteName.homeScreen,
+              path: RoutePath.articlecreen,
+              name: RouteName.articlecreen,
               builder: (BuildContext context, GoRouterState state) {
                 return const ArticlesScreen();
               },
@@ -84,7 +98,8 @@ class AppRouter {
                   path: RoutePath.detailArticleScreen,
                   name: RouteName.detailArticleScreen,
                   builder: (BuildContext context, GoRouterState state) {
-                    return const ArticleDetailScreen();
+                    String id = state.extra.toString();
+                    return ArticleDetailScreen(id: id);
                   },
                 ),
               ]),

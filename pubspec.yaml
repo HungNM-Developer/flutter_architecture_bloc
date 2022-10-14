@@ -52,6 +52,8 @@ dependencies:
   go_router: ^5.0.5
   lottie: ^1.4.3
   shared_preferences: ^2.0.15
+  equatable: ^2.0.5
+  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +85,7 @@ flutter:
     - .env.development
     - .env.production
     - assets/images/
+    - assets/images/pictures/
     - assets/fonts/
     - assets/news.json
 

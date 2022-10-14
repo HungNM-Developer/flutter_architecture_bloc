@@ -1,4 +1,6 @@
-class ArticleModel {
+import '../../domain/network/simple_reponse/simple_reponse.dart';
+
+class ArticleModel extends BaseObject<ArticleModel> {
   ArticleModel({
     this.author,
     this.title,
@@ -36,4 +38,9 @@ class ArticleModel {
         "publishedAt": publishedAt?.toIso8601String(),
         "content": content,
       };
+
+  @override
+  ArticleModel fromJson(json) {
+    return ArticleModel.fromJson(json);
+  }
 }

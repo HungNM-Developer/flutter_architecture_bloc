@@ -16,7 +16,7 @@ class SplashScreen extends StatelessWidget {
         if (currentState is SplashLoggedIn) {
           context.goNamed(RouteName.mainScreen);
         } else if (currentState is SplashNewSession) {
-          context.goNamed(RouteName.authenticationScreen);
+          context.goNamed(RouteName.onboardingScreen);
         }
       },
       child: Scaffold(

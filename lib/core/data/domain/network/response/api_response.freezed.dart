@@ -14,49 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-ApiResponse<T> _$ApiResponseFromJson<T>(
-    Map<String, dynamic> json, T Function(Object?) fromJsonT) {
-  return _ApiResponseData<T>.fromJson(json, fromJsonT);
+ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) {
+  return _ApiResponseData.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ApiResponse<T> {
+mixin _$ApiResponse {
   String get version => throw _privateConstructorUsedError;
-  bool get status => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   int get totalRow => throw _privateConstructorUsedError;
   int get rowsPerPage => throw _privateConstructorUsedError;
-  T? get data => throw _privateConstructorUsedError;
+  String get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson(Object? Function(T) toJsonT) =>
-      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ApiResponseCopyWith<T, ApiResponse<T>> get copyWith =>
+  $ApiResponseCopyWith<ApiResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ApiResponseCopyWith<T, $Res> {
+abstract class $ApiResponseCopyWith<$Res> {
   factory $ApiResponseCopyWith(
-          ApiResponse<T> value, $Res Function(ApiResponse<T>) then) =
-      _$ApiResponseCopyWithImpl<T, $Res>;
+          ApiResponse value, $Res Function(ApiResponse) then) =
+      _$ApiResponseCopyWithImpl<$Res>;
   $Res call(
       {String version,
-      bool status,
+      String status,
       String message,
       int totalRow,
       int rowsPerPage,
-      T? data});
+      String data});
 }
 
 /// @nodoc
-class _$ApiResponseCopyWithImpl<T, $Res>
-    implements $ApiResponseCopyWith<T, $Res> {
+class _$ApiResponseCopyWithImpl<$Res> implements $ApiResponseCopyWith<$Res> {
   _$ApiResponseCopyWithImpl(this._value, this._then);
 
-  final ApiResponse<T> _value;
+  final ApiResponse _value;
   // ignore: unused_field
-  final $Res Function(ApiResponse<T>) _then;
+  final $Res Function(ApiResponse) _then;
 
   @override
   $Res call({
@@ -75,7 +72,7 @@ class _$ApiResponseCopyWithImpl<T, $Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -91,37 +88,37 @@ class _$ApiResponseCopyWithImpl<T, $Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$$_ApiResponseDataCopyWith<T, $Res>
-    implements $ApiResponseCopyWith<T, $Res> {
-  factory _$$_ApiResponseDataCopyWith(_$_ApiResponseData<T> value,
-          $Res Function(_$_ApiResponseData<T>) then) =
-      __$$_ApiResponseDataCopyWithImpl<T, $Res>;
+abstract class _$$_ApiResponseDataCopyWith<$Res>
+    implements $ApiResponseCopyWith<$Res> {
+  factory _$$_ApiResponseDataCopyWith(
+          _$_ApiResponseData value, $Res Function(_$_ApiResponseData) then) =
+      __$$_ApiResponseDataCopyWithImpl<$Res>;
   @override
   $Res call(
       {String version,
-      bool status,
+      String status,
       String message,
       int totalRow,
       int rowsPerPage,
-      T? data});
+      String data});
 }
 
 /// @nodoc
-class __$$_ApiResponseDataCopyWithImpl<T, $Res>
-    extends _$ApiResponseCopyWithImpl<T, $Res>
-    implements _$$_ApiResponseDataCopyWith<T, $Res> {
+class __$$_ApiResponseDataCopyWithImpl<$Res>
+    extends _$ApiResponseCopyWithImpl<$Res>
+    implements _$$_ApiResponseDataCopyWith<$Res> {
   __$$_ApiResponseDataCopyWithImpl(
-      _$_ApiResponseData<T> _value, $Res Function(_$_ApiResponseData<T>) _then)
-      : super(_value, (v) => _then(v as _$_ApiResponseData<T>));
+      _$_ApiResponseData _value, $Res Function(_$_ApiResponseData) _then)
+      : super(_value, (v) => _then(v as _$_ApiResponseData));
 
   @override
-  _$_ApiResponseData<T> get _value => super._value as _$_ApiResponseData<T>;
+  _$_ApiResponseData get _value => super._value as _$_ApiResponseData;
 
   @override
   $Res call({
@@ -132,7 +129,7 @@ class __$$_ApiResponseDataCopyWithImpl<T, $Res>
     Object? rowsPerPage = freezed,
     Object? data = freezed,
   }) {
-    return _then(_$_ApiResponseData<T>(
+    return _then(_$_ApiResponseData(
       version: version == freezed
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
@@ -140,7 +137,7 @@ class __$$_ApiResponseDataCopyWithImpl<T, $Res>
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
       message: message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -156,33 +153,32 @@ class __$$_ApiResponseDataCopyWithImpl<T, $Res>
       data: data == freezed
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as T?,
+              as String,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable(genericArgumentFactories: true)
-class _$_ApiResponseData<T> extends _ApiResponseData<T> {
+@JsonSerializable()
+class _$_ApiResponseData extends _ApiResponseData {
   const _$_ApiResponseData(
       {this.version = '',
-      this.status = true,
+      this.status = 'true',
       this.message = '',
       this.totalRow = 0,
       this.rowsPerPage = 0,
-      this.data})
+      this.data = ''})
       : super._();
 
-  factory _$_ApiResponseData.fromJson(
-          Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$$_ApiResponseDataFromJson(json, fromJsonT);
+  factory _$_ApiResponseData.fromJson(Map<String, dynamic> json) =>
+      _$$_ApiResponseDataFromJson(json);
 
   @override
   @JsonKey()
   final String version;
   @override
   @JsonKey()
-  final bool status;
+  final String status;
   @override
   @JsonKey()
   final String message;
@@ -193,18 +189,19 @@ class _$_ApiResponseData<T> extends _ApiResponseData<T> {
   @JsonKey()
   final int rowsPerPage;
   @override
-  final T? data;
+  @JsonKey()
+  final String data;
 
   @override
   String toString() {
-    return 'ApiResponse<$T>(version: $version, status: $status, message: $message, totalRow: $totalRow, rowsPerPage: $rowsPerPage, data: $data)';
+    return 'ApiResponse(version: $version, status: $status, message: $message, totalRow: $totalRow, rowsPerPage: $rowsPerPage, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiResponseData<T> &&
+            other is _$_ApiResponseData &&
             const DeepCollectionEquality().equals(other.version, version) &&
             const DeepCollectionEquality().equals(other.status, status) &&
             const DeepCollectionEquality().equals(other.message, message) &&
@@ -227,34 +224,34 @@ class _$_ApiResponseData<T> extends _ApiResponseData<T> {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ApiResponseDataCopyWith<T, _$_ApiResponseData<T>> get copyWith =>
-      __$$_ApiResponseDataCopyWithImpl<T, _$_ApiResponseData<T>>(
-          this, _$identity);
+  _$$_ApiResponseDataCopyWith<_$_ApiResponseData> get copyWith =>
+      __$$_ApiResponseDataCopyWithImpl<_$_ApiResponseData>(this, _$identity);
 
   @override
-  Map<String, dynamic> toJson(Object? Function(T) toJsonT) {
-    return _$$_ApiResponseDataToJson<T>(this, toJsonT);
+  Map<String, dynamic> toJson() {
+    return _$$_ApiResponseDataToJson(
+      this,
+    );
   }
 }
 
-abstract class _ApiResponseData<T> extends ApiResponse<T> {
+abstract class _ApiResponseData extends ApiResponse {
   const factory _ApiResponseData(
       {final String version,
-      final bool status,
+      final String status,
       final String message,
       final int totalRow,
       final int rowsPerPage,
-      final T? data}) = _$_ApiResponseData<T>;
+      final String data}) = _$_ApiResponseData;
   const _ApiResponseData._() : super._();
 
-  factory _ApiResponseData.fromJson(
-          Map<String, dynamic> json, T Function(Object?) fromJsonT) =
-      _$_ApiResponseData<T>.fromJson;
+  factory _ApiResponseData.fromJson(Map<String, dynamic> json) =
+      _$_ApiResponseData.fromJson;
 
   @override
   String get version;
   @override
-  bool get status;
+  String get status;
   @override
   String get message;
   @override
@@ -262,9 +259,9 @@ abstract class _ApiResponseData<T> extends ApiResponse<T> {
   @override
   int get rowsPerPage;
   @override
-  T? get data;
+  String get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ApiResponseDataCopyWith<T, _$_ApiResponseData<T>> get copyWith =>
+  _$$_ApiResponseDataCopyWith<_$_ApiResponseData> get copyWith =>
       throw _privateConstructorUsedError;
 }

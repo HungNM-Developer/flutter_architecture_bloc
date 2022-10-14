@@ -18,6 +18,8 @@ class AppImages {
   static const dotted = _Image('dotted.png');
   static const thumbnail = _Image('thumbnail.png');
   static const pikloader = _Image('pika_loader.gif');
+  static const google = _Image('img_google.png');
+  static const imgNotFound = _Image('img_not_found.jpg');
 
   static Future precacheAssets(BuildContext context) async {
     await precacheImage(bulbasaur, context);
@@ -29,11 +31,15 @@ class AppImages {
     await precacheImage(dotted, context);
     await precacheImage(thumbnail, context);
     await precacheImage(pikloader, context);
+    await precacheImage(google, context);
+    await precacheImage(imgNotFound, context);
   }
 }
 
 class AppSvgImages {
   static const String logo = '$_imagePath/ic_logo.svg';
-  static const String passwordVisible = '$_imagePath/ic_logo.svg';
-  static const String passwordInvisible = '$_imagePath/ic_logo.svg';
+  static const String passwordVisible = '$_imagePath/ic_password_visible.svg';
+  static const String passwordInvisible =
+      '$_imagePath/ic_password_invisible.svg';
+  static const String google = '$_imagePath/ic_google.svg';
 }

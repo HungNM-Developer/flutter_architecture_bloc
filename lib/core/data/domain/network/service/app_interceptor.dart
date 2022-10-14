@@ -3,8 +3,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_architecture_bloc/core/domain/local/secure_storage.dart';
-import 'package:flutter_architecture_bloc/core/domain/local/secure_storage_keys.dart';
+
+import '../../local/secure_storage.dart';
+import '../../local/secure_storage_keys.dart';
 
 class AppInterceptor extends Interceptor {
   final Dio _dio;

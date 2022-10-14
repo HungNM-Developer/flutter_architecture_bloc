@@ -69,7 +69,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             style: TextStyle(
               fontSize: 15.sp,
               fontWeight: FontWeight.w500,
-              color: Colors.amber,
+              color: AppColors.kWhiteColor,
             ),
           ),
           6.verticalSpace,
@@ -83,15 +83,22 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
             inputFormatters: widget.formatters,
             enabled: widget.enabled,
             keyboardType: widget.keyboardType,
-            style: TextStyle(fontSize: 15.sp, color: Colors.amberAccent),
+            style: TextStyle(
+              fontSize: 15.sp,
+              color: AppColors.kWhiteColor,
+            ),
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius ?? 10.r),
-                borderSide: const BorderSide(color: Colors.amberAccent),
+                borderSide: const BorderSide(
+                  color: AppColors.kGreyColor,
+                ),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius ?? 10.r),
-                borderSide: const BorderSide(color: Colors.amberAccent),
+                borderSide: const BorderSide(
+                  color: AppColors.kWhiteColor,
+                ),
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(widget.radius ?? 10.r),
