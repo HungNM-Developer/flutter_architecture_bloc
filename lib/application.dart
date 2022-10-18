@@ -17,6 +17,7 @@ class Application extends StatelessWidget {
       designSize: const Size(412, 895),
       builder: (context, state) {
         return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           theme: isDark ? Themings.darkTheme : Themings.lightTheme,
           //localizationsDelegates: context.localizationDelegates,
           //supportedLocales: context.supportedLocales,

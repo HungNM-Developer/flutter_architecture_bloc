@@ -4,7 +4,6 @@ import 'package:flutter_architecture_bloc/core/data/domain/network/simple_repons
 import '../../domain/network/service/dio_client.dart';
 import '../../models/cast_list.dart';
 import '../../models/genre.dart';
-import '../../models/movie.dart';
 import '../../models/movie_detail.dart';
 import '../../models/movie_generic.dart';
 import '../../models/movie_image.dart';
@@ -40,7 +39,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
   Future<SingleResponse> getMovieByGenre(int movieId) async {
     final response = await dioClient.get(
       '$baseUrl/discover/movie?with_genres=$movieId&$apiKey',
-      object: Movie(),
+      object: MovieGeneric(),
     );
     return response;
   }
@@ -76,7 +75,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
   Future<SingleResponse> getTrendingPerson() async {
     final response = await dioClient.get(
       '$baseUrl/trending/person/week?$apiKey',
-      object: Person(),
+      object: PersonGeneric(),
     );
     return response;
   }

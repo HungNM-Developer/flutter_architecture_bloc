@@ -122,9 +122,7 @@ class DioClient {
           'code': 200,
           'data': response.data,
         };
-        print(
-          response.data,
-        );
+
         SingleResponse data = SingleResponse.fromJson(
           parsed,
           object,

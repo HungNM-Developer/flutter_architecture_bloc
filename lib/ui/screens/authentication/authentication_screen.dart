@@ -9,11 +9,9 @@ import 'package:flutter_architecture_bloc/states/cubit/authentication/authentica
 import 'package:flutter_architecture_bloc/states/cubit/authentication/authentication_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../config/app_colors.dart';
-import '../../widgets/app_button.dart';
 import '../../widgets/app_text_form_field.dart';
 import '../../widgets/button_gradient.dart';
 

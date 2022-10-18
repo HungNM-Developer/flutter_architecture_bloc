@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/states/cubit/post_detail/post_detail_cubit.dart';
 import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../config/app_colors.dart';
 import '../../../../core/data/models/posts/post.dart';

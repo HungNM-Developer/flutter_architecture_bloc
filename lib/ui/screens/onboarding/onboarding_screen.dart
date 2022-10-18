@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../core/routes/route_name.dart';
 import '../../widgets/button_gradient.dart';
 import '../../widgets/custom_outline.dart';
 

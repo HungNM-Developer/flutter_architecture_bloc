@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
-import 'package:flutter_architecture_bloc/core/enums/button_type.dart';
 import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,20 +10,22 @@ import '../../../core/data/models/movie.dart';
 import '../../../di/injection.dart';
 import '../../../states/cubit/genre/genre_cubit.dart';
 import '../../../states/cubit/movies/movie_cubit.dart';
-import '../../widgets/button_gradient.dart';
+import '../../widgets/app_shimmer.dart';
 
 class BuildWidgetCategory extends StatefulWidget {
   final int selectedGenre;
 
-  const BuildWidgetCategory({Key? key, this.selectedGenre = 28})
-      : super(key: key);
+  const BuildWidgetCategory({
+    Key? key,
+    this.selectedGenre = 0,
+  }) : super(key: key);
 
   @override
   BuildWidgetCategoryState createState() => BuildWidgetCategoryState();
 }
 
 class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
-  late int selectedGenre;
+  late int selectedGenre = 0;
 
   @override
   void initState() {
@@ -41,14 +42,31 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
           bloc: getIt<GenreCubit>()..fetchGenre(),
           builder: (context, state) {
             if (state is GenreLoading) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
+              return SizedBox(
+                height: 30.h,
+                width: double.infinity,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  children: List.generate(
+                    6,
+                    (index) => Row(
+                      children: [
+                        AppShimmer(
+                          height: 30.h,
+                          width: 70.w,
+                        ),
+                        5.horizontalSpace,
+                      ],
+                    ),
+                  ),
+                ),
               );
             }
             if (state is GenreLoaded) {
               List<Genre> genres = state.genreList;
               return SizedBox(
-                height: 45.h,
+                height: 40.h,
                 child: ListView.separated(
                   separatorBuilder: (BuildContext context, int index) =>
                       VerticalDivider(
@@ -59,45 +77,43 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                   itemCount: genres.length,
                   itemBuilder: (context, index) {
                     Genre genre = genres[index];
-                    return Column(
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            // setState(() {
-                            //   Genre genre = genres[index];
-                            //   selectedGenre = genre.id!;
-                            //   context
-                            //       .read<MovieCubit>()
-                            //       .add(MovieEventStarted(selectedGenre, ''));
-                            // });
-                          },
-                          child: Container(
-                            padding: REdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.black45,
-                              ),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(25.r),
-                              ),
-                              color: (genre.id == selectedGenre)
-                                  ? Colors.black45
-                                  : Colors.white,
+                    return Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            Genre genre = genres[index];
+                            selectedGenre = genre.id!;
+                            context
+                                .read<MovieCubit>()
+                                .fetchNowPlayingMovie(selectedGenre, '');
+                          });
+                        },
+                        child: Container(
+                          padding: REdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black45,
                             ),
-                            child: Text(
-                              genre.name!.toUpperCase(),
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: (genre.id == selectedGenre)
-                                    ? Colors.white
-                                    : Colors.black45,
-                                fontFamily: 'muli',
-                              ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(25.r),
+                            ),
+                            color: (genre.id == selectedGenre)
+                                ? Colors.teal.shade700
+                                : Colors.white,
+                          ),
+                          child: Text(
+                            genre.name!.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: selectedGenre == genre.id
+                                  ? Colors.white
+                                  : Colors.black45,
+                              fontFamily: 'muli',
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     );
                   },
                 ),
@@ -121,6 +137,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
         ),
         10.verticalSpace,
         BlocBuilder<MovieCubit, MovieState>(
+          bloc: context.read<MovieCubit>(),
           builder: (context, state) {
             if (state is MovieLoading) {
               return const Center(
@@ -156,7 +173,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                           child: ClipRRect(
                             child: CachedNetworkImage(
                               imageUrl:
-                                  'https://image.tmdb.org/t/p/original/${movie.backdropPath}',
+                                  'https://image.tmdb.org/t/p/original///${movie.backdropPath}',
                               imageBuilder: (context, imageProvider) {
                                 return Container(
                                   width: 180,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/config.dart';
-import 'app_circular_progress_indicator.dart';
 
 class MaskImage extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -28,10 +27,10 @@ class MaskImage extends StatelessWidget {
               height: double.infinity / 3,
               width: double.infinity,
               fit: BoxFit.cover,
-              placeholder: (context, url) =>
-                  const AppCircularProgressIndicator(),
+              placeholder: (context, url) => const SizedBox.shrink(),
               errorWidget: (context, url, error) => const Image(
                 image: AppImages.imgNotFound,
+                fit: BoxFit.cover,
               ),
             ),
           ),

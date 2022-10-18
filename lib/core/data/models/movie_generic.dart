@@ -46,10 +46,13 @@ class MovieGeneric extends BaseObject<MovieGeneric> {
       );
 
   factory MovieGeneric.fromJson(Map<String, dynamic> json) => MovieGeneric(
-        dates: Dates.fromJson(json["dates"]),
+        dates: json["dates"] != null ? Dates.fromJson(json["dates"]) : null,
         page: json["page"],
-        results:
-            List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
+        results: List<Movie>.from(
+          json["results"].map(
+            (x) => Movie.fromJson(x),
+          ),
+        ),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );

@@ -24,6 +24,7 @@ import '../core/helpers/dialog_helper.dart';
 import '../core/helpers/event_bus.dart';
 import '../states/cubit/genre/genre_cubit.dart';
 import '../states/cubit/movies/movie_cubit.dart';
+import '../states/cubit/person/person_cubit.dart';
 import '../states/cubit/post_detail/post_detail_cubit.dart';
 import '../states/cubit/posts/posts_cubit.dart';
 import '../states/cubit/tab/tab_cubit.dart';
@@ -74,4 +75,5 @@ void _registerBlocs() {
   getIt.registerFactory(() => PostDetailCubit());
   getIt.registerFactory(() => MovieCubit());
   getIt.registerFactory(() => GenreCubit());
+  getIt.registerFactory(() => PersonCubit());
 }
