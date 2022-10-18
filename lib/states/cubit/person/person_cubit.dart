@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 import 'package:flutter_architecture_bloc/states/cubit/person/person_state.dart';
 
-import '../../../core/data/models/person.dart';
+import '../../../core/data/models/person_generic.dart';
 import '../../../core/data/repositories/movies/moview_repository.dart';
 import '../../../di/injection.dart';
 

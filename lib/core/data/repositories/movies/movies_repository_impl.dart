@@ -7,7 +7,7 @@ import '../../models/genre.dart';
 import '../../models/movie_detail.dart';
 import '../../models/movie_generic.dart';
 import '../../models/movie_image.dart';
-import '../../models/person.dart';
+import '../../models/person_generic.dart';
 import 'moview_repository.dart';
 
 class MoviesRepositoryImpl implements MoviesRepository {

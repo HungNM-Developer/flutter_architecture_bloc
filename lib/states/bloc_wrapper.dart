@@ -65,16 +65,16 @@ class BlocWrapper extends StatelessWidget {
           BlocProvider<PostDetailCubit>(
             create: (BuildContext context) => getIt<PostDetailCubit>(),
           ),
-          BlocProvider<MovieCubit>(
+          BlocProvider<PersonCubit>(
             create: (BuildContext context) =>
-                getIt<MovieCubit>()..fetchNowPlayingMovie(0, ''),
+                getIt<PersonCubit>()..fetchTrendingPerson(),
           ),
           BlocProvider<GenreCubit>(
             create: (BuildContext context) => getIt<GenreCubit>()..fetchGenre(),
           ),
-          BlocProvider<PersonCubit>(
+          BlocProvider<MovieCubit>(
             create: (BuildContext context) =>
-                getIt<PersonCubit>()..fetchTrendingPerson(),
+                getIt<MovieCubit>()..fetchNowPlayingMovie(0, ''),
           ),
         ],
         child: FutureBuilder(

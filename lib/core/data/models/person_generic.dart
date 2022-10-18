@@ -6,12 +6,14 @@
 
 import 'dart:convert';
 
+import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
+
 PersonGeneric personGenericFromJson(String str) =>
     PersonGeneric.fromJson(json.decode(str));
 
 String personGenericToJson(PersonGeneric data) => json.encode(data.toJson());
 
-class PersonGeneric {
+class PersonGeneric extends BaseObject<PersonGeneric> {
   PersonGeneric({
     this.page,
     this.results,
@@ -44,8 +46,8 @@ class PersonGeneric {
             (x) => Person.fromJson(x),
           ),
         ),
-        totalPages: json["total_pages"],
-        totalResults: json["total_results"],
+        totalPages: json["total_pages"] ?? 0,
+        totalResults: json["total_results"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,9 +56,14 @@ class PersonGeneric {
         "total_pages": totalPages,
         "total_results": totalResults,
       };
+
+  @override
+  PersonGeneric fromJson(json) {
+    return PersonGeneric.fromJson(json);
+  }
 }
 
-class Person {
+class Person extends BaseObject<Person> {
   Person({
     this.adult,
     this.id,
@@ -132,8 +139,17 @@ class Person {
         "known_for_department":
             knownForDepartmentValues.reverse?[knownForDepartment],
         "profile_path": profilePath ?? '',
-        "known_for": List<dynamic>.from(knownFor!.map((x) => x.toJson())),
+        "known_for": List<dynamic>.from(
+          knownFor!.map(
+            (x) => x.toJson(),
+          ),
+        ),
       };
+
+  @override
+  Person fromJson(json) {
+    return Person.fromJson(json);
+  }
 }
 
 class KnownFor {
