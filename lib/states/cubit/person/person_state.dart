@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../core/data/models/person.dart';
+import '../../../core/data/models/person_generic.dart';
 
 abstract class PersonState extends Equatable {
   const PersonState();
