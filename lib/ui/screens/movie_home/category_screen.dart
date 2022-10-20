@@ -1,9 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
+import 'package:flutter_architecture_bloc/core/core.dart';
 import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/data/models/genre.dart';
 import '../../../core/data/models/movie.dart';
@@ -25,12 +26,18 @@ class BuildWidgetCategory extends StatefulWidget {
 }
 
 class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
-  late int selectedGenre = 0;
-
+  late int _selectedGenre;
+  final _cubitGenres = getIt<GenreCubit>();
   @override
   void initState() {
     super.initState();
-    selectedGenre = widget.selectedGenre;
+    _selectedGenre = widget.selectedGenre;
+  }
+
+  @override
+  void dispose() {
+    _cubitGenres.close();
+    super.dispose();
   }
 
   @override
@@ -39,7 +46,6 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         BlocBuilder<GenreCubit, GenreState>(
-          bloc: getIt<GenreCubit>()..fetchGenre(),
           builder: (context, state) {
             if (state is GenreLoading) {
               return SizedBox(
@@ -68,6 +74,9 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
               return SizedBox(
                 height: 40.h,
                 child: ListView.separated(
+                  shrinkWrap: true,
+                  primary: true,
+                  physics: const BouncingScrollPhysics(),
                   separatorBuilder: (BuildContext context, int index) =>
                       VerticalDivider(
                     color: Colors.transparent,
@@ -78,42 +87,29 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                   itemBuilder: (context, index) {
                     Genre genre = genres[index];
                     return Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            Genre genre = genres[index];
-                            selectedGenre = genre.id!;
-                            context
-                                .read<MovieCubit>()
-                                .fetchNowPlayingMovie(selectedGenre, '');
-                          });
-                        },
-                        child: Container(
-                          padding: REdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black45,
-                            ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(25.r),
-                            ),
-                            color: (genre.id == selectedGenre)
-                                ? Colors.teal.shade700
-                                : Colors.white,
-                          ),
-                          child: Text(
+                      child: ChoiceChip(
+                          label: Text(
                             genre.name!.toUpperCase(),
                             style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
-                              color: selectedGenre == genre.id
+                              color: _selectedGenre == genre.id
                                   ? Colors.white
                                   : Colors.black45,
                               fontFamily: 'muli',
                             ),
                           ),
-                        ),
-                      ),
+                          selected: _selectedGenre == genre.id,
+                          backgroundColor: Colors.white,
+                          selectedColor: Colors.tealAccent.shade700,
+                          onSelected: (bool selected) {
+                            setState(() {
+                              _selectedGenre = genre.id!;
+                              context
+                                  .read<MovieCubit>()
+                                  .fetchNowPlayingMovie(_selectedGenre, '');
+                            });
+                          }),
                     );
                   },
                 ),
@@ -137,18 +133,22 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
         ),
         10.verticalSpace,
         BlocBuilder<MovieCubit, MovieState>(
-          bloc: context.read<MovieCubit>(),
+          bloc: context.read<MovieCubit>()
+            ..fetchNowPlayingMovie(_selectedGenre, ''),
           builder: (context, state) {
             if (state is MovieLoading) {
               return const Center(
                 child: AppCircularProgressIndicator(),
               );
-            } else if (state is MovieLoaded) {
+            }
+            if (state is MovieLoaded) {
               List<Movie> movieList = state.movieList;
-
               return SizedBox(
                 height: 300.h,
                 child: ListView.separated(
+                  shrinkWrap: true,
+                  primary: true,
+                  physics: const BouncingScrollPhysics(),
                   separatorBuilder: (context, index) => VerticalDivider(
                     color: Colors.transparent,
                     width: 15.w,
@@ -162,22 +162,20 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                       children: <Widget>[
                         GestureDetector(
                           onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         MovieDetailScreen(movie: movie),
-                            //   ),
-                            // );
+                            context.pushNamed(
+                              RouteName.movieDetailScreen,
+                              extra: movie,
+                            );
                           },
                           child: ClipRRect(
-                            child: CachedNetworkImage(
+                            child: UIUtility.cachedNetworkImage(
                               imageUrl:
                                   'https://image.tmdb.org/t/p/original///${movie.backdropPath}',
+                              width: 180.w,
+                              height: 250.h,
+                              radius: 12.r,
                               imageBuilder: (context, imageProvider) {
                                 return Container(
-                                  width: 180,
-                                  height: 250,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(12.r),
@@ -189,23 +187,6 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                                   ),
                                 );
                               },
-                              placeholder: (context, url) => SizedBox(
-                                width: 180.w,
-                                height: 250.h,
-                                child: const Center(
-                                  child: AppCircularProgressIndicator(),
-                                ),
-                              ),
-                              errorWidget: (context, url, error) => Container(
-                                width: 180.w,
-                                height: 250.h,
-                                decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                        'assets/images/img_not_found.jpg'),
-                                  ),
-                                ),
-                              ),
                             ),
                           ),
                         ),
@@ -264,7 +245,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                 ),
               );
             } else {
-              return Container();
+              return const SizedBox.shrink();
             }
           },
         ),

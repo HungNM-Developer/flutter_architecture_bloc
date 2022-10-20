@@ -2,6 +2,7 @@ class RoutePath {
   static const String splashScreen = '/splash';
   static const String onboardingScreen = '/onboarding';
   static const String movieHomeScreen = '/movie_home';
+  static const String movieDetailScreen = 'movie-detail';
   static const String authenticationScreen = '/authentication';
   static const String mainScreen = '/';
   static const String newPasswordScreen = 'new_password';

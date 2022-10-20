@@ -1,24 +1,37 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
+import 'package:flutter_architecture_bloc/core/core.dart';
 import 'package:flutter_architecture_bloc/core/data/models/person_generic.dart';
+import 'package:flutter_architecture_bloc/di/injection.dart';
 import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../di/injection.dart';
 import '../../../states/cubit/person/person_cubit.dart';
 import '../../../states/cubit/person/person_state.dart';
 
-class TrendingPersonScreen extends StatelessWidget {
+class TrendingPersonScreen extends StatefulWidget {
   const TrendingPersonScreen({super.key});
+
+  @override
+  State<TrendingPersonScreen> createState() => _TrendingPersonScreenState();
+}
+
+class _TrendingPersonScreenState extends State<TrendingPersonScreen> {
+  final _cubit = getIt<PersonCubit>();
+  @override
+  void dispose() {
+    _cubit.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         BlocBuilder<PersonCubit, PersonState>(
+          bloc: _cubit..fetchTrendingPerson(),
           builder: (context, state) {
             if (state is PersonLoading) {
               return const Center(
@@ -50,17 +63,16 @@ class TrendingPersonScreen extends StatelessWidget {
                           ),
                           elevation: 3,
                           child: ClipRRect(
-                            child: CachedNetworkImage(
+                            child: UIUtility.cachedNetworkImage(
                               imageUrl:
                                   'https://image.tmdb.org/t/p/w200${person.profilePath}',
+                              width: 80.r,
+                              height: 80.r,
+                              radius: 100.r,
                               imageBuilder: (context, imageProvider) {
-                                return Container(
-                                  width: 80,
-                                  height: 80,
+                                return DecoratedBox(
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(100.r),
-                                    ),
+                                    shape: BoxShape.circle,
                                     image: DecorationImage(
                                       image: imageProvider,
                                       fit: BoxFit.cover,
@@ -68,28 +80,6 @@ class TrendingPersonScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                              placeholder: (context, url) => SizedBox(
-                                width: 80.r,
-                                height: 80.r,
-                                child: const Center(
-                                  child: AppCircularProgressIndicator(),
-                                ),
-                              ),
-                              errorWidget: (context, url, error) => Container(
-                                width: 80.r,
-                                height: 80.r,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(100.r),
-                                  ),
-                                  image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                      'assets/images/img_not_found.jpg',
-                                    ),
-                                  ),
-                                ),
-                              ),
                             ),
                           ),
                         ),
@@ -119,7 +109,7 @@ class TrendingPersonScreen extends StatelessWidget {
                 ),
               );
             } else {
-              return Container();
+              return const SizedBox.shrink();
             }
           },
         ),

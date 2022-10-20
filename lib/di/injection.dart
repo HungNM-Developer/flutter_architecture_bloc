@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_architecture_bloc/app_router.dart';
-import 'package:flutter_architecture_bloc/core/data/repositories/articles/article_repository.dart';
-import 'package:flutter_architecture_bloc/core/data/repositories/articles/article_repository_impl.dart';
 import 'package:flutter_architecture_bloc/core/data/repositories/authentication/authentication_repository.dart';
 import 'package:flutter_architecture_bloc/core/data/repositories/authentication/authentication_repository_impl.dart';
 import 'package:flutter_architecture_bloc/core/data/repositories/forget_password/forget_password_repository.dart';
 import 'package:flutter_architecture_bloc/core/data/repositories/forget_password/forget_password_repository_impl.dart';
-import 'package:flutter_architecture_bloc/states/cubit/articles/articles_cubit.dart';
 import 'package:flutter_architecture_bloc/states/cubit/authentication/authentication_cubit.dart';
 import 'package:flutter_architecture_bloc/states/cubit/forget_password/forget_password_cubit.dart';
 import 'package:flutter_architecture_bloc/states/cubit/session/session_cubit.dart';
@@ -18,15 +15,12 @@ import '../core/data/domain/local/shared_prefs.dart';
 import '../core/data/domain/network/service/dio_client.dart';
 import '../core/data/repositories/movies/movies_repository_impl.dart';
 import '../core/data/repositories/movies/moview_repository.dart';
-import '../core/data/repositories/posts/post_repository.dart';
-import '../core/data/repositories/posts/post_repository_impl.dart';
 import '../core/helpers/dialog_helper.dart';
 import '../core/helpers/event_bus.dart';
 import '../states/cubit/genre/genre_cubit.dart';
+import '../states/cubit/movie_detail/movie_detail_cubit.dart';
 import '../states/cubit/movies/movie_cubit.dart';
 import '../states/cubit/person/person_cubit.dart';
-import '../states/cubit/post_detail/post_detail_cubit.dart';
-import '../states/cubit/posts/posts_cubit.dart';
 import '../states/cubit/tab/tab_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -50,12 +44,6 @@ void _registerRepositories() {
   getIt.registerLazySingleton<ForgetPasswordRepository>(
     () => ForgetPasswordRepositoryImplement(getIt<DioClient>()),
   );
-  getIt.registerLazySingleton<ArticleRepository>(
-    () => ArticleRepositoryImpl(getIt<DioClient>()),
-  );
-  getIt.registerLazySingleton<PostRepository>(
-    () => PostRepositoryImpl(getIt<DioClient>()),
-  );
   getIt.registerLazySingleton<MoviesRepository>(
     () => MoviesRepositoryImpl(getIt<DioClient>()),
   );
@@ -70,10 +58,8 @@ void _registerBlocs() {
   getIt.registerFactory(
     () => ForgetPasswordCubit(getIt<ForgetPasswordRepository>()),
   );
-  getIt.registerFactory(() => ArticlesCubit());
-  getIt.registerFactory(() => PostsCubit());
-  getIt.registerFactory(() => PostDetailCubit());
   getIt.registerFactory(() => MovieCubit());
   getIt.registerFactory(() => GenreCubit());
   getIt.registerFactory(() => PersonCubit());
+  getIt.registerFactory(() => MovieDetailCubit());
 }

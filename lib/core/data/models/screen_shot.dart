@@ -1,15 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 
-class Screenshot extends Equatable {
-  final String aspect;
-  final String imagePath;
-  final int height;
-  final int width;
-  final String countryCode;
-  final double voteAverage;
-  final int voteCount;
+class Screenshot extends BaseObject<Screenshot> {
+  final String? aspect;
+  final String? imagePath;
+  final int? height;
+  final int? width;
+  final String? countryCode;
+  final double? voteAverage;
+  final int? voteCount;
 
-  const Screenshot({
+  Screenshot({
     this.aspect = '',
     this.imagePath = '',
     this.height = 0,
@@ -21,12 +21,11 @@ class Screenshot extends Equatable {
 
   factory Screenshot.fromJson(Map<String, dynamic>? json) {
     if (json == null) {
-      return const Screenshot();
+      return Screenshot();
     }
 
     return Screenshot(
-        aspect: json['aspect_ratio']
-            .toString(), //double.tryParse(json['aspect_ratio'])?.toString() ?? 1.0,
+        aspect: json['aspect_ratio'].toString(),
         imagePath: json['file_path'],
         height: json['height'],
         width: json['width'],
@@ -36,6 +35,7 @@ class Screenshot extends Equatable {
   }
 
   @override
-  List<Object> get props =>
-      [aspect, imagePath, height, width, countryCode, voteAverage, voteCount];
+  Screenshot fromJson(json) {
+    return Screenshot.fromJson(json);
+  }
 }

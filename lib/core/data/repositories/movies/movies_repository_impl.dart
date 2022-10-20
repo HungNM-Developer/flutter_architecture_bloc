@@ -1,13 +1,14 @@
 import 'package:flutter_architecture_bloc/config/config.dart';
 import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
+import 'package:flutter_architecture_bloc/core/data/models/movie_credits.dart';
 
 import '../../domain/network/service/dio_client.dart';
-import '../../models/cast_list.dart';
 import '../../models/genre.dart';
 import '../../models/movie_detail.dart';
 import '../../models/movie_generic.dart';
 import '../../models/movie_image.dart';
 import '../../models/person_generic.dart';
+import '../../models/youtube.dart';
 import 'moview_repository.dart';
 
 class MoviesRepositoryImpl implements MoviesRepository {
@@ -18,12 +19,14 @@ class MoviesRepositoryImpl implements MoviesRepository {
   final String apiKey = 'api_key=${Config.apiKey}';
 
   @override
-  Future<SingleResponse> getCastList(int movieId) async {
+  Future<List<Cast>> getCastList(int movieId) async {
     final response = await dioClient.get(
       '$baseUrl/movie/$movieId/credits?$apiKey',
-      object: Cast(),
+      object: MovieCredits(),
     );
-    return response;
+    List<Cast> castList = (response.data as MovieCredits).cast ?? [];
+
+    return castList;
   }
 
   @override
@@ -50,16 +53,23 @@ class MoviesRepositoryImpl implements MoviesRepository {
       '$baseUrl/movie/$movieId?$apiKey',
       object: MovieDetail(),
     );
+    MovieDetail movieDetail = response.data;
+    movieDetail.trailerId = await getYoutubeId(movieId);
+
+    movieDetail.movieImage = await getMovieImage(movieId);
+
+    movieDetail.castList = await getCastList(movieId);
     return response;
   }
 
   @override
-  Future<SingleResponse> getMovieImage(int movieId) async {
+  Future<MovieImage> getMovieImage(int movieId) async {
     final response = await dioClient.get(
       '$baseUrl/movie/$movieId/images?$apiKey',
-      object: const MovieImage(),
+      object: MovieImage(),
     );
-    return response;
+    var result = response.data;
+    return result;
   }
 
   @override
@@ -81,11 +91,15 @@ class MoviesRepositoryImpl implements MoviesRepository {
   }
 
   @override
-  Future<SingleResponse> getYoutubeId(int id) async {
+  Future<String> getYoutubeId(int id) async {
     final response = await dioClient.get(
       '$baseUrl/movie/$id/videos?$apiKey',
-      object: String,
+      object: Youtube(),
     );
-    return response;
+
+    String youtubeId = (response.data as Youtube).results!.isNotEmpty
+        ? (response.data as Youtube).results?.first.key ?? ''
+        : '';
+    return youtubeId;
   }
 }

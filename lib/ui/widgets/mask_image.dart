@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../config/config.dart';
+import '../../core/core.dart';
 
 class MaskImage extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -22,13 +22,13 @@ class MaskImage extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(14.r),
             ),
-            child: CachedNetworkImage(
+            child: UIUtility.cachedNetworkImage(
               imageUrl: 'https://image.tmdb.org/t/p/original/$backdropPath',
               height: double.infinity / 3,
               width: double.infinity,
               fit: BoxFit.cover,
-              placeholder: (context, url) => const SizedBox.shrink(),
-              errorWidget: (context, url, error) => const Image(
+              placeholderWidget: const SizedBox.shrink(),
+              errorWidget: const Image(
                 image: AppImages.imgNotFound,
                 fit: BoxFit.cover,
               ),

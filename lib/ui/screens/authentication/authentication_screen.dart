@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/app_images.dart';
 import 'package:flutter_architecture_bloc/core/enums/button_type.dart';
@@ -14,6 +12,7 @@ import 'package:go_router/go_router.dart';
 import '../../../config/app_colors.dart';
 import '../../widgets/app_text_form_field.dart';
 import '../../widgets/button_gradient.dart';
+import '../../widgets/custom_backgound_blur.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({Key? key}) : super(key: key);
@@ -49,52 +48,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         extendBody: true,
         body: Stack(
           children: [
-            Positioned(
-              top: 100.h,
-              left: -88,
-              child: Container(
-                height: 166,
-                width: 166,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.kPinkColor,
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 200,
-                    sigmaY: 200,
-                  ),
-                  child: Container(
-                    height: 166,
-                    width: 166,
-                    color: Colors.transparent,
-                  ),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 300.h,
-              right: -100,
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.kGreenColor,
-                ),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(
-                    sigmaX: 200,
-                    sigmaY: 200,
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.transparent,
-                  ),
-                ),
-              ),
-            ),
+            const CustomBackgroundBlur(),
             SafeArea(
               child: SizedBox(
                 height: double.infinity,

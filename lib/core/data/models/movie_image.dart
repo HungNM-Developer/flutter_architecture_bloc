@@ -1,19 +1,19 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 
 import 'screen_shot.dart';
 
-class MovieImage extends Equatable {
+class MovieImage extends BaseObject<MovieImage> {
   final List<Screenshot> backdrops;
   final List<Screenshot> posters;
 
-  const MovieImage({
+  MovieImage({
     this.backdrops = const [],
     this.posters = const [],
   });
 
   factory MovieImage.fromJson(Map<String, dynamic>? result) {
     if (result == null) {
-      return const MovieImage();
+      return MovieImage();
     }
 
     return MovieImage(
@@ -27,5 +27,7 @@ class MovieImage extends Equatable {
   }
 
   @override
-  List<Object> get props => [backdrops, posters];
+  MovieImage fromJson(json) {
+    return MovieImage.fromJson(json);
+  }
 }
