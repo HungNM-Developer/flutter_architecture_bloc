@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
 import 'package:flutter_architecture_bloc/core/core.dart';
+import 'package:flutter_architecture_bloc/ui/widgets/custom_backgound_blur.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -15,60 +14,12 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenHeight = MediaQuery.of(context).size.height;
-    // final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: AppColors.kBlackColor,
       extendBody: true,
       body: Stack(
         children: [
-          Positioned(
-            top: 100.h,
-            left: -88,
-            child: Container(
-              height: 166,
-              width: 166,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.kPinkColor,
-              ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 200,
-                  sigmaY: 200,
-                ),
-                child: Container(
-                  height: 166,
-                  width: 166,
-                  color: Colors.transparent,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 300.h,
-            right: -100,
-            child: Container(
-              height: 200,
-              width: 200,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.kGreenColor,
-              ),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: 200,
-                  sigmaY: 200,
-                ),
-                child: Container(
-                  height: 200,
-                  width: 200,
-                  color: Colors.transparent,
-                ),
-              ),
-            ),
-          ),
+          const CustomBackgroundBlur(),
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -97,21 +48,11 @@ class OnboardingScreen extends StatelessWidget {
                         1
                       ]),
                   child: Lottie.asset(
-                    'assets/news.json',
+                    AppSvgImages.lotieImage,
                     width: 350.h,
                     height: 350.h,
                     fit: BoxFit.fill,
                   ),
-                  // Container(
-                  //   decoration: const BoxDecoration(
-                  //     shape: BoxShape.circle,
-                  //     image: DecorationImage(
-                  //       fit: BoxFit.cover,
-                  //       alignment: Alignment.bottomLeft,
-                  //       image: AssetImage('assets/img-onboarding.png'),
-                  //     ),
-                  //   ),
-                  // ),
                 ),
                 60.verticalSpace,
                 Text(

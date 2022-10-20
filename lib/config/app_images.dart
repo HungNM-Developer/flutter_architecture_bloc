@@ -42,4 +42,20 @@ class AppSvgImages {
   static const String passwordInvisible =
       '$_imagePath/ic_password_invisible.svg';
   static const String google = '$_imagePath/ic_google.svg';
+  static const String film = '$_imagePath/film_rolls.gif';
+  static const String lotieImage = '$_imagePath/news.json';
+}
+
+class AppSvgIcon {
+  // Constant Icon
+  static const String kIconHome = 'assets/svg/icon-home.svg';
+  static const String kIconPlayOnTv = 'assets/svg/icon-playtv.svg';
+  static const String kIconPlus = 'assets/svg/icon-plus.svg';
+  static const String kIconCategories = 'assets/svg/icon-categories.svg';
+  static const String kIconDownload = 'assets/svg/icon-download.svg';
+  static const String kIconSearch = 'assets/svg/icon-search.svg';
+  static const String kIconMic = 'assets/svg/icon-mic.svg';
+  static const String kIconPlay = 'assets/svg/icon-play.svg';
+  static const String kIconBack = 'assets/svg/icon-back.svg';
+  static const String kIconMenu = 'assets/svg/icon-menu.svg';
 }

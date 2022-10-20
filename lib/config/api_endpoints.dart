@@ -2,7 +2,7 @@
 
 class ApiEndpoint {
   // Server Links
-  static const baseUrl = 'https://newsapi.org/v2/';
+  static const baseUrl = 'https://api.themoviedb.org/3';
   // static const api = baseUrl + 'api/';
 
 }

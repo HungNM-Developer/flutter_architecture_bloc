@@ -7,14 +7,11 @@ import 'package:flutter_architecture_bloc/ui/screens/movie_home/movie_home_scree
 import 'package:flutter_architecture_bloc/ui/screens/splash/splash_screem.dart';
 import 'package:go_router/go_router.dart';
 
+import 'core/data/models/movie.dart';
 import 'ui/screens/authentication/confirm_restore_password/confirm_restore_password_screen.dart';
 import 'ui/screens/authentication/forget_password/forget_password_screen.dart';
 import 'ui/screens/authentication/new_password/new_password_screen.dart';
-import 'ui/screens/main/articles/article_detail_screen.dart';
-import 'ui/screens/main/articles/articles_screen.dart';
-import 'ui/screens/main/bookmark/bookmark_screen.dart';
-import 'ui/screens/main/main_screen.dart';
-import 'ui/screens/main/search/search_screen.dart';
+import 'ui/screens/detail_movie/movie_detail_screen.dart';
 import 'ui/screens/onboarding/onboarding_screen.dart';
 
 class AppRouter {
@@ -72,44 +69,16 @@ class AppRouter {
         builder: (BuildContext context, GoRouterState state) {
           return const MovieHomeScreen();
         },
-      ),
-      GoRoute(
-        path: RoutePath.mainScreen,
-        name: RouteName.mainScreen,
-        builder: (BuildContext context, GoRouterState state) {
-          return const MainScreen();
-        },
         routes: [
           GoRoute(
-            path: RoutePath.searchScreen,
-            name: RouteName.searchScreen,
+            path: RoutePath.movieDetailScreen,
+            name: RouteName.movieDetailScreen,
             builder: (BuildContext context, GoRouterState state) {
-              return const SearchScreen();
+              return MovieDetailScreen(
+                movie: state.extra as Movie,
+              );
             },
-          ),
-          GoRoute(
-              path: RoutePath.articlecreen,
-              name: RouteName.articlecreen,
-              builder: (BuildContext context, GoRouterState state) {
-                return const ArticlesScreen();
-              },
-              routes: [
-                GoRoute(
-                  path: RoutePath.detailArticleScreen,
-                  name: RouteName.detailArticleScreen,
-                  builder: (BuildContext context, GoRouterState state) {
-                    String id = state.extra.toString();
-                    return ArticleDetailScreen(id: id);
-                  },
-                ),
-              ]),
-          GoRoute(
-            path: RoutePath.bookmarkScreen,
-            name: RouteName.bookmarkScreen,
-            builder: (BuildContext context, GoRouterState state) {
-              return const BookmarkScreen();
-            },
-          ),
+          )
         ],
       ),
     ],

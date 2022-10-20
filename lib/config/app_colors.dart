@@ -42,4 +42,5 @@ class AppColors {
 
   static const Color shimmerBaseColor = Colors.black12;
   static const Color shimmerHighlightColor = Colors.white;
+  static const Color bgDarkBlue = Color(0xFF101930);
 }

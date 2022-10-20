@@ -10,13 +10,11 @@ import '../core/data/repositories/authentication/authentication_repository.dart'
 import '../core/data/repositories/authentication/authentication_repository_impl.dart';
 import '../core/data/repositories/movies/movies_repository_impl.dart';
 import '../core/data/repositories/movies/moview_repository.dart';
-import 'cubit/articles/articles_cubit.dart';
 import 'cubit/authentication/authentication_cubit.dart';
 import 'cubit/genre/genre_cubit.dart';
+import 'cubit/movie_detail/movie_detail_cubit.dart';
 import 'cubit/movies/movie_cubit.dart';
 import 'cubit/person/person_cubit.dart';
-import 'cubit/post_detail/post_detail_cubit.dart';
-import 'cubit/posts/posts_cubit.dart';
 import 'cubit/splash/splash_cubit.dart';
 import 'cubit/theme/theme_cubit.dart';
 
@@ -56,25 +54,17 @@ class BlocWrapper extends StatelessWidget {
             create: (BuildContext context) =>
                 AuthenticationCubit(getIt<AuthenticationRepository>()),
           ),
-          BlocProvider<ArticlesCubit>(
-            create: (BuildContext context) => ArticlesCubit(),
-          ),
-          BlocProvider<PostsCubit>(
-            create: (BuildContext context) => getIt<PostsCubit>()..fetchPosts(),
-          ),
-          BlocProvider<PostDetailCubit>(
-            create: (BuildContext context) => getIt<PostDetailCubit>(),
+          BlocProvider<MovieCubit>(
+            create: (BuildContext context) => getIt<MovieCubit>(),
           ),
           BlocProvider<PersonCubit>(
-            create: (BuildContext context) =>
-                getIt<PersonCubit>()..fetchTrendingPerson(),
+            create: (BuildContext context) => getIt<PersonCubit>(),
           ),
           BlocProvider<GenreCubit>(
             create: (BuildContext context) => getIt<GenreCubit>()..fetchGenre(),
           ),
-          BlocProvider<MovieCubit>(
-            create: (BuildContext context) =>
-                getIt<MovieCubit>()..fetchNowPlayingMovie(0, ''),
+          BlocProvider<MovieDetailCubit>(
+            create: (BuildContext context) => getIt<MovieDetailCubit>(),
           ),
         ],
         child: FutureBuilder(
