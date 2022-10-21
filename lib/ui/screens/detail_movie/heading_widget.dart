@@ -136,6 +136,21 @@ class _HeadingWidget extends StatelessWidget {
                     right: 20,
                   ),
                   width: double.infinity,
+                  child: Text(
+                    movieDetail.releaseDate.toString(),
+                    style: TextStyle(
+                      fontFamily: 'muli',
+                      color: AppColors.kWhiteColor.withOpacity(0.7),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: REdgeInsets.only(
+                    left: 10,
+                    bottom: 8,
+                    right: 20,
+                  ),
+                  width: double.infinity,
                   child: Row(
                     children: [
                       RatingBar.builder(

@@ -3,15 +3,24 @@ class SingleResponse<T> {
   final String? msg;
   final int? code;
   final T? data;
-  //final List<T>? dataList;
 
   SingleResponse({
     this.status = '',
     this.msg = '',
     this.code = 0,
     this.data,
-    //this.dataList = const [],
   });
+
+  void fold({
+    Function(SingleResponse<T>)? success,
+    Function(String)? error,
+  }) {
+    if (status == 'ok') {
+      success?.call(this);
+    } else {
+      error?.call(msg ?? '');
+    }
+  }
 
   factory SingleResponse.fromJson(
           Map<String, dynamic> json, BaseObject? target) =>

@@ -37,9 +37,7 @@ class BlocWrapper extends StatelessWidget {
           ),
         ),
         RepositoryProvider<MoviesRepository>(
-          create: (context) => MoviesRepositoryImpl(
-            getIt<DioClient>(),
-          ),
+          create: (context) => MoviesRepositoryImpl(getIt<DioClient>()),
         ),
       ],
       child: MultiBlocProvider(

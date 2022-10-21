@@ -1,5 +1,5 @@
-import '../../domain/network/response/api_response.dart';
+import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 
 abstract class ForgetPasswordRepository {
-  Future<ApiResponse> restore({required String email});
+  Future<SingleResponse> restore({required String email});
 }

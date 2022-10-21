@@ -13,9 +13,10 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
 
   Future<void> fetchMovieDetail(int id) async {
     final result = await _moviesRepository.getMovieDetail(id);
-    if (result.status != 'ok') emit(MovieDetailError());
-    final movieDetail = result.data as MovieDetail;
-    //if (lstGenres.isEmpty) emit(GenreEmpty());
-    emit(MovieDetailLoaded(detail: movieDetail));
+    result.fold(success: (response) {
+      emit(MovieDetailLoaded(detail: response.data as MovieDetail));
+    }, error: (error) {
+      emit(MovieDetailError());
+    });
   }
 }

@@ -44,127 +44,117 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         }
       },
       child: Scaffold(
-        backgroundColor: AppColors.kBlackColor,
+        backgroundColor: AppColors.bgDarkBlue,
         extendBody: true,
-        body: Stack(
-          children: [
-            const CustomBackgroundBlur(),
-            SafeArea(
-              child: SizedBox(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  padding: REdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      49.verticalSpace,
-                      Text(
-                        'Wellcome,',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 35.sp,
-                          color: AppColors.kWhiteColor,
-                        ),
-                      ),
-                      Text(
-                        'Sign in with your account',
-                        style: TextStyle(
-                          fontSize: 20.sp,
-                          color: AppColors.kGreyColor,
-                        ),
-                      ),
-                      70.verticalSpace,
-                      AppTextFormField(
-                        controller: _emailController,
-                        hint: 'User name or email',
-                        label: 'User name or email',
-                        isRequired: true,
-                      ),
-                      30.verticalSpace,
-                      AppTextFormField(
-                        controller: _passwordController,
-                        hint: 'Password',
-                        label: 'Password',
-                        obscureText: true,
-                        isRequired: true,
-                      ),
-                      10.verticalSpace,
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {
-                            context.goNamed(RouteName.forgotPassword);
-                          },
-                          child: Text(
-                            'forget password',
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ),
-                      ),
-                      30.verticalSpace,
-                      ButtonGradient(
-                        onTap: () {
-                          context.goNamed(RouteName.movieHomeScreen);
-                        },
-                        title: 'Sign In',
-                        height: 44.h,
-                        width: double.infinity,
-                        type: ButtonType.primary,
-                      ),
-                      30.verticalSpace,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Expanded(
-                            flex: 2,
-                            child: Divider(
-                              color: Colors.tealAccent.withOpacity(0.2),
-                              height: 1.h,
-                            ),
-                          ),
-                          const Spacer(),
-                          Expanded(
-                            child: Text(
-                              'Hoặc',
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                color: Colors.tealAccent,
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Expanded(
-                            flex: 2,
-                            child: Divider(
-                              height: 1.h,
-                              color: Colors.tealAccent.withOpacity(0.2),
-                            ),
-                          ),
-                        ],
-                      ),
-                      33.verticalSpace,
-                      ButtonGradient(
-                        onTap: () {},
-                        title: 'Sign In with Google',
-                        height: 44.h,
-                        width: double.infinity,
-                        type: ButtonType.outline,
-                        prefix: Image(
-                          image: AppImages.google,
-                          width: 20.w,
-                          height: 20.w,
-                        ),
-                      ),
-                    ],
+        body: SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          padding: REdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              49.verticalSpace,
+              Text(
+                'Wellcome,',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 35.sp,
+                  color: AppColors.kWhiteColor,
+                ),
+              ),
+              Text(
+                'Sign in with your account',
+                style: TextStyle(
+                  fontSize: 20.sp,
+                  color: AppColors.kGreyColor,
+                ),
+              ),
+              70.verticalSpace,
+              AppTextFormField(
+                controller: _emailController,
+                hint: 'User name or email',
+                label: 'User name or email',
+                isRequired: true,
+              ),
+              30.verticalSpace,
+              AppTextFormField(
+                controller: _passwordController,
+                hint: 'Password',
+                label: 'Password',
+                obscureText: true,
+                isRequired: true,
+              ),
+              10.verticalSpace,
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    context.goNamed(RouteName.forgotPassword);
+                  },
+                  child: Text(
+                    'forget password',
+                    style: TextStyle(
+                      fontSize: 15.sp,
+                      color: Colors.blueGrey,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              30.verticalSpace,
+              ButtonGradient(
+                onTap: () {
+                  context.goNamed(RouteName.movieHomeScreen);
+                },
+                title: 'Sign In',
+                height: 44.h,
+                width: double.infinity,
+                type: ButtonType.primary,
+              ),
+              30.verticalSpace,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Divider(
+                      color: Colors.tealAccent.withOpacity(0.2),
+                      height: 1.h,
+                    ),
+                  ),
+                  const Spacer(),
+                  Expanded(
+                    child: Text(
+                      'Hoặc',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.tealAccent,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Expanded(
+                    flex: 2,
+                    child: Divider(
+                      height: 1.h,
+                      color: Colors.tealAccent.withOpacity(0.2),
+                    ),
+                  ),
+                ],
+              ),
+              33.verticalSpace,
+              ButtonGradient(
+                onTap: () {},
+                title: 'Sign In with Google',
+                height: 44.h,
+                width: double.infinity,
+                type: ButtonType.outline,
+                prefix: Image(
+                  image: AppImages.google,
+                  width: 20.w,
+                  height: 20.w,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

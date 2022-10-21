@@ -1,7 +1,6 @@
 import 'package:flutter_architecture_bloc/config/config.dart';
 import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 import 'package:flutter_architecture_bloc/core/data/models/movie_credits.dart';
-
 import '../../domain/network/service/dio_client.dart';
 import '../../models/genre.dart';
 import '../../models/movie_detail.dart';

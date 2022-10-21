@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import '../../domain/network/response/api_response.dart';
+import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 
 abstract class AuthenticationRepository {
-  Future<ApiResponse> logIn({
+  Future<SingleResponse> logIn({
     required String username,
     required String password,
   });

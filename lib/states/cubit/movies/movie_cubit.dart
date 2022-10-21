@@ -15,16 +15,19 @@ class MovieCubit extends Cubit<MovieState> {
   MovieCubit() : super(MovieLoading());
 
   Future<void> fetchNowPlayingMovie(int movieId, String query) async {
-    SingleResponse<dynamic> result;
+    final SingleResponse result;
     if (movieId == 0) {
       result = await _moviesRepository.getNowPlayingMovie();
     } else {
       result = await _moviesRepository.getMovieByGenre(movieId);
     }
-    if (result.status != 'ok') emit(MovieError());
-    final lstMovies =
-        List<Movie>.from((result.data as MovieGeneric).results ?? []);
-    if (lstMovies.isEmpty) emit(MovieLoadEmpty());
-    emit(MovieLoaded(movieList: lstMovies));
+    result.fold(success: (response) {
+      final lstMovies =
+          List<Movie>.from((response.data as MovieGeneric).results ?? []);
+      if (lstMovies.isEmpty) emit(MovieLoadEmpty());
+      emit(MovieLoaded(movieList: lstMovies));
+    }, error: (error) {
+      emit(MovieError());
+    });
   }
 }

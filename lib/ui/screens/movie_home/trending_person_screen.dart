@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
 import 'package:flutter_architecture_bloc/core/core.dart';
 import 'package:flutter_architecture_bloc/core/data/models/person_generic.dart';
 import 'package:flutter_architecture_bloc/di/injection.dart';
-import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
