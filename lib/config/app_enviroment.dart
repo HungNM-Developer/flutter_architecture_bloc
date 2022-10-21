@@ -6,10 +6,17 @@ class Enviroment {
     if (kReleaseMode) {
       return '.env.production';
     }
-    return '.env.development';
+    return '.env';
   }
+
+  static const int receiveTimeout = 3000;
+  static const int connectionTimeout = 5000;
 
   static String get apiUrl {
     return dotenv.env['API_URL'] ?? 'API_URL not found';
+  }
+
+  static String get apiKey {
+    return dotenv.env['API_KEY'] ?? 'API_KEY not found';
   }
 }

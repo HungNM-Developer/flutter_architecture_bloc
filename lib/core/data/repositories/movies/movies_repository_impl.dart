@@ -15,8 +15,8 @@ class MoviesRepositoryImpl implements MoviesRepository {
   final DioClient dioClient;
   MoviesRepositoryImpl(this.dioClient);
 
-  final String baseUrl = Config.baseUrl;
-  final String apiKey = 'api_key=${Config.apiKey}';
+  final String baseUrl = Enviroment.apiUrl;
+  final String apiKey = 'api_key=${Enviroment.apiKey}';
 
   @override
   Future<List<Cast>> getCastList(int movieId) async {

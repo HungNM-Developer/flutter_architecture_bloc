@@ -20,7 +20,7 @@ class AppInterceptor extends Interceptor {
     options.headers = {
       'accessToken': token,
     };
-    return handler.next(options);
+    return super.onRequest(options, handler);
   }
 
   @override
@@ -31,6 +31,7 @@ class AppInterceptor extends Interceptor {
       if (refreshToken.isEmpty) return handler.next(err);
       _dio.interceptors.requestLock.lock();
       _dio.interceptors.responseLock.lock();
+
       final options = err.requestOptions;
 
       _dio.interceptors.requestLock.unlock();

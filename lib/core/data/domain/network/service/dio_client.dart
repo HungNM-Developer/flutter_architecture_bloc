@@ -12,9 +12,9 @@ class DioClient {
 
   DioClient(this._dio, this._storage) {
     _dio
-      ..options.baseUrl = Config.baseUrl
-      ..options.connectTimeout = Config.connectionTimeout
-      ..options.receiveTimeout = Config.receiveTimeout
+      ..options.baseUrl = Enviroment.apiUrl
+      ..options.connectTimeout = Enviroment.connectionTimeout
+      ..options.receiveTimeout = Enviroment.receiveTimeout
       ..options.responseType = ResponseType.json
       ..interceptors.addAll(<Interceptor>[
         AppInterceptor(_dio, _storage),

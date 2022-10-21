@@ -49,6 +49,7 @@ class _BodyWidget extends StatelessWidget {
             SizedBox(
               height: 110.h,
               child: ListView.separated(
+                physics: const ClampingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 separatorBuilder: (context, index) => VerticalDivider(
                   color: Colors.transparent,
@@ -123,6 +124,7 @@ class _BodyWidget extends StatelessWidget {
             SizedBox(
               height: 155.h,
               child: ListView.separated(
+                physics: const ClampingScrollPhysics(),
                 separatorBuilder: (context, index) => VerticalDivider(
                   color: Colors.transparent,
                   width: 5.w,

@@ -52,6 +52,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                 height: 30.h,
                 width: double.infinity,
                 child: ListView(
+                  physics: const ClampingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   children: List.generate(
@@ -137,8 +138,25 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
             ..fetchNowPlayingMovie(_selectedGenre, ''),
           builder: (context, state) {
             if (state is MovieLoading) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
+              return SizedBox(
+                height: 300.h,
+                child: ListView(
+                  physics: const ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  children: List.generate(
+                    4,
+                    (index) => Row(
+                      children: [
+                        AppShimmer(
+                          height: 250.h,
+                          width: 180.w,
+                        ),
+                        5.horizontalSpace,
+                      ],
+                    ),
+                  ),
+                ),
               );
             }
             if (state is MovieLoaded) {

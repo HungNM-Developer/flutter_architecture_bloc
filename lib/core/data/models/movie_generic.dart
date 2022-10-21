@@ -101,23 +101,3 @@ class Dates {
             "${minimum?.year.toString().padLeft(4, '0')}-${minimum?.month.toString().padLeft(2, '0')}-${minimum?.day.toString().padLeft(2, '0')}",
       };
 }
-
-// enum OriginalLanguage { EN, FR, JA }
-
-// final originalLanguageValues = EnumValues({
-//   "en": OriginalLanguage.EN,
-//   "fr": OriginalLanguage.FR,
-//   "ja": OriginalLanguage.JA
-// });
-
-// class EnumValues<T> {
-//   Map<String, T>? map;
-//   Map<T, String>? reverseMap;
-
-//   EnumValues(this.map);
-
-//   Map<T, String>? get reverse {
-//     reverseMap ??= map?.map((k, v) => MapEntry(v, k));
-//     return reverseMap;
-//   }
-// }

@@ -8,6 +8,8 @@ import 'dart:convert';
 
 import 'package:flutter_architecture_bloc/core/data/domain/network/simple_reponse/simple_reponse.dart';
 
+import 'movie_credits.dart';
+
 PersonGeneric personGenericFromJson(String str) =>
     PersonGeneric.fromJson(json.decode(str));
 
@@ -74,7 +76,7 @@ class Person extends BaseObject<Person> {
     this.gender,
     this.knownForDepartment,
     this.profilePath,
-    this.knownFor,
+    //this.knownFor,
   });
 
   final bool? adult;
@@ -86,7 +88,7 @@ class Person extends BaseObject<Person> {
   final int? gender;
   final KnownForDepartment? knownForDepartment;
   final String? profilePath;
-  final List<KnownFor>? knownFor;
+  //final List<KnownFor>? knownFor;
 
   Person copyWith({
     bool? adult,
@@ -110,7 +112,7 @@ class Person extends BaseObject<Person> {
         gender: gender ?? this.gender,
         knownForDepartment: knownForDepartment ?? this.knownForDepartment,
         profilePath: profilePath ?? this.profilePath,
-        knownFor: knownFor ?? this.knownFor,
+        //knownFor: knownFor ?? this.knownFor,
       );
 
   factory Person.fromJson(Map<String, dynamic> json) => Person(
@@ -124,8 +126,8 @@ class Person extends BaseObject<Person> {
         knownForDepartment:
             knownForDepartmentValues.map?[json["known_for_department"]],
         profilePath: json["profile_path"] ?? '',
-        knownFor: List<KnownFor>.from(
-            json["known_for"].map((x) => KnownFor.fromJson(x))),
+        // knownFor: List<KnownFor>.from(
+        //     json["known_for"].map((x) => KnownFor.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -139,11 +141,11 @@ class Person extends BaseObject<Person> {
         "known_for_department":
             knownForDepartmentValues.reverse?[knownForDepartment],
         "profile_path": profilePath ?? '',
-        "known_for": List<dynamic>.from(
-          knownFor!.map(
-            (x) => x.toJson(),
-          ),
-        ),
+        // "known_for": List<dynamic>.from(
+        //   knownFor!.map(
+        //     (x) => x.toJson(),
+        //   ),
+        // ),
       };
 
   @override
@@ -281,15 +283,3 @@ final knownForDepartmentValues = EnumValues({
 enum ResultMediaType { PERSON }
 
 final resultMediaTypeValues = EnumValues({"person": ResultMediaType.PERSON});
-
-class EnumValues<T> {
-  Map<String, T>? map;
-  Map<T, String>? reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String>? get reverse {
-    reverseMap ??= map!.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
-}

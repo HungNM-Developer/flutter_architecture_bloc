@@ -17,34 +17,34 @@ class MovieCredits extends BaseObject<MovieCredits> {
   MovieCredits({
     this.id,
     this.cast,
-    this.crew,
+    //this.crew,
   });
 
   final int? id;
   final List<Cast>? cast;
-  final List<Cast>? crew;
+  //final List<Cast>? crew;
 
   MovieCredits copyWith({
     int? id,
     List<Cast>? cast,
-    List<Cast>? crew,
+    //List<Cast>? crew,
   }) =>
       MovieCredits(
         id: id ?? this.id,
         cast: cast ?? this.cast,
-        crew: crew ?? this.crew,
+        //crew: crew ?? this.crew,
       );
 
   factory MovieCredits.fromJson(Map<String, dynamic> json) => MovieCredits(
         id: json["id"],
         cast: List<Cast>.from(json["cast"].map((x) => Cast.fromJson(x))),
-        crew: List<Cast>.from(json["crew"].map((x) => Cast.fromJson(x))),
+        //crew: List<Cast>.from(json["crew"].map((x) => Cast.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "cast": List<dynamic>.from(cast!.map((x) => x.toJson())),
-        "crew": List<dynamic>.from(crew!.map((x) => x.toJson())),
+        //"crew": List<dynamic>.from(crew!.map((x) => x.toJson())),
       };
 
   @override

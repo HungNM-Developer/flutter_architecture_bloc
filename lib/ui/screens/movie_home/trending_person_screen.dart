@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../states/cubit/person/person_cubit.dart';
 import '../../../states/cubit/person/person_state.dart';
+import '../../widgets/app_shimmer.dart';
 
 class TrendingPersonScreen extends StatefulWidget {
   const TrendingPersonScreen({super.key});
@@ -34,19 +35,37 @@ class _TrendingPersonScreenState extends State<TrendingPersonScreen> {
           bloc: _cubit..fetchTrendingPerson(),
           builder: (context, state) {
             if (state is PersonLoading) {
-              return const Center(
-                child: AppCircularProgressIndicator(),
+              return SizedBox(
+                height: 110.h,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  children: List.generate(
+                    6,
+                    (index) => Row(
+                      children: [
+                        AppShimmer(
+                          width: 80.r,
+                          height: 80.r,
+                          radius: 100.r,
+                        ),
+                        5.horizontalSpace,
+                      ],
+                    ),
+                  ),
+                ),
               );
             }
             if (state is PersonLoaded) {
               List<Person> personList = state.personList;
-              if (kDebugMode) {
-                print(personList.length);
-              }
               return SizedBox(
                 height: 110.h,
                 width: double.infinity,
                 child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  primary: true,
+                  shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: personList.length,
                   separatorBuilder: (context, index) => VerticalDivider(

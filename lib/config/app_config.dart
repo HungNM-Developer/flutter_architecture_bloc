@@ -1,12 +1,14 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class Config {
-  // Rapid Host Endpoint
-  static String baseUrl = dotenv.get("API_URL");
-  static const int receiveTimeout = 15000;
-  static const int connectionTimeout = 15000;
-  static String apiKey = dotenv.get("API_KEY");
+import 'app_enviroment.dart';
 
-  // // Server Secrate Token
-  // static String token = 'Bearer ' + dotenv.get("API_TOKEN");
-}
+// class Config {
+//   // Rapid Host Endpoint
+//   static String baseUrl = Enviroment.apiUrl;
+//   static const int receiveTimeout = 15000;
+//   static const int connectionTimeout = 15000;
+//   static String apiKey = Enviroment.apiKey;
+
+//   // // Server Secrate Token
+//   // static String token = 'Bearer ' + dotenv.get("API_TOKEN");
+// }

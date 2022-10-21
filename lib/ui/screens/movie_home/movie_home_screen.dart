@@ -40,7 +40,7 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
           ListView(
             shrinkWrap: true,
             primary: true,
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             children: [
               24.verticalSpace,
               Text(
@@ -121,7 +121,7 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
               ),
               25.verticalSpace,
               RPadding(
-                padding: const EdgeInsets.only(left: 16),
+                padding: const EdgeInsets.only(left: 16, right: 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
