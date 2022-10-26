@@ -119,6 +119,8 @@ class _HeadingWidget extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     movieDetail.title ?? '',
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
@@ -186,6 +188,8 @@ class _HeadingWidget extends StatelessWidget {
                   width: double.infinity,
                   child: Text(
                     movieDetail.genresName(),
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontFamily: 'muli',
                       color: AppColors.kWhiteColor.withOpacity(0.7),

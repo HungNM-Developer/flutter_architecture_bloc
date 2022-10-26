@@ -1,9 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_architecture_bloc/core/routes/route_name.dart';
 import 'package:flutter_architecture_bloc/di/injection.dart';
 import 'package:flutter_architecture_bloc/ui/screens/movie_home/trending_person_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../config/app_colors.dart';
 import '../../../core/data/models/movie.dart';
@@ -58,7 +60,7 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
           RPadding(
             padding: const EdgeInsets.only(left: 20.0),
             child: Text(
-              'new movies'.toUpperCase(),
+              'top rated movies'.toUpperCase(),
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
@@ -69,7 +71,7 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
           ),
           20.verticalSpace,
           BlocBuilder<MovieCubit, MovieState>(
-            bloc: _cubitMovie..fetchNowPlayingMovie(0, ''),
+            bloc: _cubitMovie..fetchTopRatedMovie(),
             buildWhen: (previous, current) => current != previous,
             builder: (context, state) {
               if (state is MovieLoading) {
@@ -91,7 +93,12 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
                         int pageViewIndex) {
                       Movie movie = movies[itemIndex];
                       return MaskImage(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.pushNamed(
+                            RouteName.movieDetailScreen,
+                            extra: movie,
+                          );
+                        },
                         backdropPath: movie.backdropPath,
                         title: movie.title?.toUpperCase(),
                       );
@@ -122,7 +129,7 @@ class _MovieHomeScreenState extends State<MovieHomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Category movies'.toUpperCase(),
+                  'movie genre'.toUpperCase(),
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.bold,

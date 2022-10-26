@@ -13,6 +13,7 @@ import 'ui/screens/authentication/forget_password/forget_password_screen.dart';
 import 'ui/screens/authentication/new_password/new_password_screen.dart';
 import 'ui/screens/detail_movie/movie_detail_screen.dart';
 import 'ui/screens/onboarding/onboarding_screen.dart';
+import 'ui/screens/search_movie/search_movie_screen.dart';
 
 class AppRouter {
   static GoRouter goRouter = GoRouter(
@@ -78,7 +79,14 @@ class AppRouter {
                 movie: state.extra as Movie,
               );
             },
-          )
+          ),
+          GoRoute(
+            path: RoutePath.searchScreen,
+            name: RouteName.searchScreen,
+            builder: (BuildContext context, GoRouterState state) {
+              return const SearchMovieScreen();
+            },
+          ),
         ],
       ),
     ],

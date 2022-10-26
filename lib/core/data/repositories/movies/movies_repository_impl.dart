@@ -15,7 +15,7 @@ class MoviesRepositoryImpl implements MoviesRepository {
   MoviesRepositoryImpl(this.dioClient);
 
   final String baseUrl = Enviroment.apiUrl;
-  final String apiKey = 'api_key=${Enviroment.apiKey}';
+  final String apiKey = 'api_key=${Enviroment.apiKey_1}';
 
   @override
   Future<List<Cast>> getCastList(int movieId) async {
@@ -100,5 +100,32 @@ class MoviesRepositoryImpl implements MoviesRepository {
         ? (response.data as Youtube).results?.first.key ?? ''
         : '';
     return youtubeId;
+  }
+
+  @override
+  Future<SingleResponse> searchMovie(String keyword, int page) async {
+    final response = await dioClient.get(
+      '$baseUrl/search/movie?$apiKey&page=$page&query=$keyword',
+      object: MovieGeneric(),
+    );
+    return response;
+  }
+
+  @override
+  Future<SingleResponse> getPopularMovie() async {
+    final response = await dioClient.get(
+      '$baseUrl/movie/popular?$apiKey',
+      object: MovieGeneric(),
+    );
+    return response;
+  }
+
+  @override
+  Future<SingleResponse> getTopRatedMovie() async {
+    final response = await dioClient.get(
+      '$baseUrl/movie/top_rated?$apiKey',
+      object: MovieGeneric(),
+    );
+    return response;
   }
 }

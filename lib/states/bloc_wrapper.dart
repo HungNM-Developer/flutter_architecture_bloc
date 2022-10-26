@@ -15,6 +15,7 @@ import 'cubit/genre/genre_cubit.dart';
 import 'cubit/movie_detail/movie_detail_cubit.dart';
 import 'cubit/movies/movie_cubit.dart';
 import 'cubit/person/person_cubit.dart';
+import 'cubit/search_movie/search_movie_cubit.dart';
 import 'cubit/splash/splash_cubit.dart';
 import 'cubit/theme/theme_cubit.dart';
 
@@ -63,6 +64,9 @@ class BlocWrapper extends StatelessWidget {
           ),
           BlocProvider<MovieDetailCubit>(
             create: (BuildContext context) => getIt<MovieDetailCubit>(),
+          ),
+          BlocProvider<SearchMovieCubit>(
+            create: (BuildContext context) => getIt<SearchMovieCubit>(),
           ),
         ],
         child: FutureBuilder(

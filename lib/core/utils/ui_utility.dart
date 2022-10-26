@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/ui/widgets/app_circular_progress_indicator.dart';
 
 class UIUtility {
+  //Hide keyboard permannently
+  //We need to specifically assign the current context so get.Context can't be used in this case
+  static removeFocus(BuildContext context) {
+    FocusScopeNode currentFocus = FocusScope.of(context);
+    currentFocus.unfocus();
+  }
+
   static Widget cachedNetworkImage({
     required String imageUrl,
     double? width,

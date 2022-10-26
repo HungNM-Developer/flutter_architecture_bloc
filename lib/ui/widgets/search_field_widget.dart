@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/app_colors.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../core/routes/route_name.dart';
 
 class SearchFieldWidget extends StatelessWidget {
   const SearchFieldWidget({Key? key, required this.padding}) : super(key: key);
@@ -11,7 +14,6 @@ class SearchFieldWidget extends StatelessWidget {
     return Padding(
       padding: padding,
       child: Container(
-        // height: 36,
         decoration: BoxDecoration(
           color: AppColors.kGreyColor.withOpacity(0.12),
           borderRadius: BorderRadius.circular(10),
@@ -22,14 +24,16 @@ class SearchFieldWidget extends StatelessWidget {
               width: 8,
             ),
             const Icon(Icons.search),
-            // SvgPicture.asset(
-            //   AppColors.kIconSearch,
-            // ),
             const SizedBox(
               width: 8,
             ),
             Expanded(
               child: TextField(
+                onTap: () {
+                  context.pushNamed(
+                    RouteName.searchScreen,
+                  );
+                },
                 style: TextStyle(
                   color: AppColors.kWhiteColor.withOpacity(0.6),
                   fontSize: 17,
@@ -51,9 +55,6 @@ class SearchFieldWidget extends StatelessWidget {
               width: 8,
             ),
             const Icon(Icons.mic),
-            // SvgPicture.asset(
-            //   AppColors.kIconMic,
-            // ),
             const SizedBox(
               width: 8,
             ),

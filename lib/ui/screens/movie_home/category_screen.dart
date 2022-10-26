@@ -93,15 +93,13 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
                             style: TextStyle(
                               fontSize: 11.sp,
                               fontWeight: FontWeight.bold,
-                              color: _selectedGenre == genre.id
-                                  ? Colors.white
-                                  : Colors.black45,
+                              color: Colors.white,
                               fontFamily: 'muli',
                             ),
                           ),
                           selected: _selectedGenre == genre.id,
-                          backgroundColor: Colors.white,
-                          selectedColor: Colors.blueAccent,
+                          backgroundColor: const Color(0xFF43466a),
+                          selectedColor: const Color(0xFF415efd),
                           onSelected: (bool selected) {
                             setState(() {
                               _selectedGenre = genre.id!;
@@ -123,7 +121,7 @@ class BuildWidgetCategoryState extends State<BuildWidgetCategory> {
         ),
         30.verticalSpace,
         Text(
-          'new playing'.toUpperCase(),
+          'now playing movies'.toUpperCase(),
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,

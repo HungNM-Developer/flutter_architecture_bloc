@@ -11,4 +11,7 @@ abstract class MoviesRepository {
   Future<String> getYoutubeId(int id);
   Future<MovieImage> getMovieImage(int movieId);
   Future<List<Cast>> getCastList(int movieId);
+  Future<SingleResponse> searchMovie(String keyword, int page);
+  Future<SingleResponse> getPopularMovie();
+  Future<SingleResponse> getTopRatedMovie();
 }

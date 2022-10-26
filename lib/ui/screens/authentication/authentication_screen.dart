@@ -12,7 +12,6 @@ import 'package:go_router/go_router.dart';
 import '../../../config/app_colors.dart';
 import '../../widgets/app_text_form_field.dart';
 import '../../widgets/button_gradient.dart';
-import '../../widgets/custom_backgound_blur.dart';
 
 class AuthenticationScreen extends StatefulWidget {
   const AuthenticationScreen({Key? key}) : super(key: key);

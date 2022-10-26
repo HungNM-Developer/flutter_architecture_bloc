@@ -13,7 +13,7 @@ class MovieDetailButton extends StatelessWidget {
         Container(
           padding: REdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.blueAccent,
+            color: const Color(0xFF43466a),
             //const Color(0xFF192E5A).withOpacity(0.5),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -33,7 +33,7 @@ class MovieDetailButton extends StatelessWidget {
         Container(
           padding: REdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.blueAccent,
+            color: const Color(0xFF43466a),
             //const Color(0xFF192E5A).withOpacity(0.5),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -53,7 +53,7 @@ class MovieDetailButton extends StatelessWidget {
         Container(
           padding: REdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.blueAccent,
+            color: const Color(0xFF43466a),
             //const Color(0xFF192E5A).withOpacity(0.5),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
@@ -73,7 +73,7 @@ class MovieDetailButton extends StatelessWidget {
         Container(
           padding: REdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.blueAccent,
+            color: const Color(0xFF43466a),
             //const Color(0xFF192E5A).withOpacity(0.5),
             borderRadius: BorderRadius.circular(10),
             boxShadow: [

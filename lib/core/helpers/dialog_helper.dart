@@ -64,7 +64,6 @@ class DialogHelperImpl implements DialogHelper {
       required Widget body,
       required Widget header,
       bool touchOutsideToDismiss = true}) {
-    // TODO: implement actionDialog
     throw UnimplementedError();
   }
 
@@ -77,7 +76,6 @@ class DialogHelperImpl implements DialogHelper {
       Widget? childAbsolutely,
       bool isDismissible = true,
       bool enableDrag = true}) {
-    // TODO: implement bottomSheet
     throw UnimplementedError();
   }
 
@@ -89,85 +87,6 @@ class DialogHelperImpl implements DialogHelper {
       String? message,
       NoticeDialogType type = NoticeDialogType.warning,
       bool touchOutsideToDismiss = true}) {
-    // TODO: implement noticeDialog
     throw UnimplementedError();
   }
-
-  // @override
-  // Future<T?> noticeDialog<T>(
-  //   BuildContext context, {
-  //   required String title,
-  //   ActionCommonDialog? positiveAction,
-  //   ActionCommonDialog? negativeAction,
-  //   String? message,
-  //   NoticeDialogType type = NoticeDialogType.warning,
-  //   bool touchOutsideToDismiss = true,
-  // }) {
-  //   return showDialog(
-  //     context: context,
-  //     builder: (_) => NoticeDialog(
-  //       title: title,
-  //       touchOutsideToDismiss: touchOutsideToDismiss,
-  //       negativeAction: negativeAction,
-  //       positiveAction: positiveAction,
-  //       message: message,
-  //       type: type,
-  //     ),
-  //   );
-  // }
-
-  // @override
-  // Future<T?> actionDialog<T>(
-  //   BuildContext context, {
-  //   ActionCommonDialog? positiveAction,
-  //   ActionCommonDialog? negativeAction,
-  //   required Widget body,
-  //   required Widget header,
-  //   bool touchOutsideToDismiss = true,
-  // }) {
-  //   return showDialog(
-  //     context: context,
-  //     builder: (_) => ActionDialog(
-  //       touchOutsideToDismiss: touchOutsideToDismiss,
-  //       negativeAction: negativeAction,
-  //       positiveAction: positiveAction,
-  //       body: body,
-  //       header: header,
-  //     ),
-  //   );
-  // }
-
-  // @override
-  // Future<T?> bottomSheet<T>(
-  //   BuildContext context, {
-  //   String? title,
-  //   VoidCallback? onBackPressed,
-  //   Widget? action,
-  //   Widget? child,
-  //   Widget? childAbsolutely,
-  //   bool isDismissible = true,
-  //   bool enableDrag = true,
-  // }) {
-  //   return showMaterialModalBottomSheet(
-  //     context: context,
-  //     backgroundColor: ThemeHelper.backgroundColorDialog(context),
-  //     barrierColor: ThemeHelper.backgroundDismissDialog(context),
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topRight: Radius.circular(20.r),
-  //         topLeft: Radius.circular(20.r),
-  //       ),
-  //     ),
-  //     isDismissible: isDismissible,
-  //     enableDrag: enableDrag,
-  //     builder: (_) =>
-  //         childAbsolutely ??
-  //         CommonBottomSheet(
-  //           title: title ?? '',
-  //           onBackPressed: onBackPressed,
-  //           action: action,
-  //           child: child ?? const SizedBox.shrink(),
-  //         ),
-  //   );
-  // }
 }

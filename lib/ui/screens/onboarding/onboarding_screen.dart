@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_architecture_bloc/config/config.dart';
 import 'package:flutter_architecture_bloc/core/core.dart';
-import 'package:flutter_architecture_bloc/ui/widgets/custom_backgound_blur.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';

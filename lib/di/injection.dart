@@ -21,6 +21,7 @@ import '../states/cubit/genre/genre_cubit.dart';
 import '../states/cubit/movie_detail/movie_detail_cubit.dart';
 import '../states/cubit/movies/movie_cubit.dart';
 import '../states/cubit/person/person_cubit.dart';
+import '../states/cubit/search_movie/search_movie_cubit.dart';
 import '../states/cubit/tab/tab_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -62,4 +63,5 @@ void _registerBlocs() {
   getIt.registerFactory(() => GenreCubit());
   getIt.registerFactory(() => PersonCubit());
   getIt.registerFactory(() => MovieDetailCubit());
+  getIt.registerFactory(() => SearchMovieCubit());
 }

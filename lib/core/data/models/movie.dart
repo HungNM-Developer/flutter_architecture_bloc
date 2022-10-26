@@ -24,7 +24,7 @@ class Movie extends BaseObject<Movie> {
     this.releaseDate,
     this.title,
     this.video,
-    this.voteAverage,
+    this.voteAverage = 0,
     this.voteCount,
   });
 
@@ -37,7 +37,7 @@ class Movie extends BaseObject<Movie> {
   final String? overview;
   final double? popularity;
   final String? posterPath;
-  final DateTime? releaseDate;
+  final String? releaseDate;
   final String? title;
   final bool? video;
   final double? voteAverage;
@@ -53,7 +53,7 @@ class Movie extends BaseObject<Movie> {
     String? overview,
     double? popularity,
     String? posterPath,
-    DateTime? releaseDate,
+    String? releaseDate,
     String? title,
     bool? video,
     double? voteAverage,
@@ -86,7 +86,7 @@ class Movie extends BaseObject<Movie> {
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
+        releaseDate: json["release_date"],
         title: json["title"],
         video: json["video"],
         voteAverage: json["vote_average"].toDouble(),
@@ -103,13 +103,14 @@ class Movie extends BaseObject<Movie> {
         "overview": overview,
         "popularity": popularity,
         "poster_path": posterPath,
-        "release_date":
-            "${releaseDate?.year.toString().padLeft(4, '0')}-${releaseDate?.month.toString().padLeft(2, '0')}-${releaseDate?.day.toString().padLeft(2, '0')}",
+        "release_date": releaseDate,
         "title": title,
         "video": video,
         "vote_average": voteAverage,
         "vote_count": voteCount,
       };
+  double voteAverageStart() =>
+      double.parse(((5 * voteAverage!.toDouble()) / 10).toStringAsFixed(1));
 
   @override
   Movie fromJson(json) {
