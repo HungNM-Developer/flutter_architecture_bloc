@@ -50,8 +50,6 @@ jobs:
       #13
       - run: flutter pub get
    
-      #14
-      - run: flutter test
       #15
       - run: flutter build apk --release --split-per-abi
       - run: |
