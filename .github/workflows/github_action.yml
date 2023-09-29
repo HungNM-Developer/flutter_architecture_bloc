@@ -51,7 +51,7 @@ jobs:
       - run: flutter pub get
    
       #15
-      - run: flutter build apk --release --split-per-abi
+      - run: flutter build apk
       - run: |
           flutter build ios --no-codesign
           cd build/ios/iphoneos
