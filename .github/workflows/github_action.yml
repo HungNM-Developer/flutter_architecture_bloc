@@ -47,13 +47,13 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      #13
-      - run: fvm flutter pub get
+      # #13
+      # - run: fvm flutter pub get
    
       #15
-      - run: fvm flutter build apk
+      - run: flutter build apk
       - run: |
-          fvm flutter build ios --no-codesign
+          flutter build ios --no-codesign
           cd build/ios/iphoneos
           mkdir Payload
           cd Payload
