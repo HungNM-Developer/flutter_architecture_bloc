@@ -48,12 +48,12 @@ jobs:
         with:
           channel: 'stable'
       #13
-      - run: flutter pub get
+      - run: fvm flutter pub get
    
       #15
-      - run: flutter build apk
+      - run: fvm flutter build apk
       - run: |
-          flutter build ios --no-codesign
+          fvm flutter build ios --no-codesign
           cd build/ios/iphoneos
           mkdir Payload
           cd Payload
