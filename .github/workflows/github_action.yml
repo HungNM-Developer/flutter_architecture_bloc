@@ -56,7 +56,7 @@ jobs:
       # - run: fvm flutter pub get
    
       #15
-      - run: flutter build apk
+      - run: fvm flutter build apk
       # - run: |
       #     flutter build ios
       #     cd build/ios/iphoneos
