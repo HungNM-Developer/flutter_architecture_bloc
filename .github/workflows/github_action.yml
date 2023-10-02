@@ -53,10 +53,10 @@ jobs:
           channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
           # channel: 'stable'
       # #13
-      # - run: fvm flutter pub get
+      - run: flutter pub get
    
       #15
-      - run: fvm flutter build apk
+      - run: flutter build apk
       # - run: |
       #     flutter build ios
       #     cd build/ios/iphoneos
